@@ -1,7 +1,12 @@
 <?php
+use App\App;
+use App\Table\Post;
 
-$post = $db->prepare('SELECT * FROM post WHERE id = ?', [$_GET['id']], 'App\Table\Post', true);
-
+$post = Post::find($_GET['id']);
+if($post === false){
+    \App\App::notFound();
+}
+App::setTitle($post->title);
 ?>
 
 <h1><?= $post->title; ?></h1>
