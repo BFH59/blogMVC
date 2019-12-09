@@ -1,24 +1,25 @@
 <?php
 
-require '../App/Autoloader.php';
+define('ROOT', dirname(__DIR__));
+require ROOT . '/app/App.php';
 
-App\Autoloader::register();
+App::load();
 
-if(isset($_GET['p'])){
-    $p = $_GET['p'];
+if(isset($_GET['p'])) {
+    $page = $_GET['p'];
 }else{
-    $p = 'home';
+    $page = 'home';
+
 }
 
-
 ob_start();
-if($p === 'home'){
-    require '../pages/home.php';
-}elseif ($p === 'single'){
-    require '../pages/single.php';
-} elseif ($p === 'category'){
-require '../pages/categorie.php';
+if($page === 'home'){
+    require ROOT . '/pages/posts/home.php';
+} elseif ($page === 'posts.category'){
+    require ROOT . '/pages/posts/category.php';
+} elseif ($page === 'posts.single'){
+    require ROOT . '/pages/posts/single.php';
 }
 $content = ob_get_clean();
 
-require '../pages/templates/default.php';
+require ROOT . '/pages/templates/default.php';
