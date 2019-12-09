@@ -10,6 +10,7 @@ class App
     private static $_instance;
     private $db_instance;
 
+//singleton pour limiter la class App à une seule instance
     public static function getInstance(){
         if(is_null(self::$_instance)){
             self::$_instance = new App();

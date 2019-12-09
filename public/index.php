@@ -5,8 +5,8 @@ require ROOT . '/app/App.php';
 
 App::load();
 
-if(isset($_GET['page'])) {
-    $page = $_GET['page'];
+if(isset($_GET['p'])) {
+    $page = $_GET['p'];
 }else{
     $page = 'home';
 
@@ -15,6 +15,10 @@ if(isset($_GET['page'])) {
 ob_start();
 if($page === 'home'){
     require ROOT . '/pages/posts/home.php';
+} elseif ($page === 'posts.category'){
+    require ROOT . '/pages/posts/category.php';
+} elseif ($page === 'posts.single'){
+    require ROOT . '/pages/posts/single.php';
 }
 $content = ob_get_clean();
 

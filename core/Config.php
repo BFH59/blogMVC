@@ -9,7 +9,7 @@ class Config
     private $settings = [];
     private static $_instance;
 
-    //singleton pour limiter à une seule instanciation de la classe
+    //singleton pour limiter la classe à une seule instanciation
     //recupére l instance dans $_instance si elle existe
     public static function getInstance($file){
         if(is_null(self::$_instance)){
