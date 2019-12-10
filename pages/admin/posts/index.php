@@ -1,6 +1,6 @@
 <?php
 
-$posts = App::getInstance()->getTable('Post')->all();
+$posts = App::getInstance()->getTable('Post')->last();
 
 ?>
 <h1>Admin dashboard - Gestion des articles</h1>
@@ -13,6 +13,7 @@ $posts = App::getInstance()->getTable('Post')->all();
     <thead>
     <tr>
         <td>ID</td>
+        <td>Categorie</td>
         <td>Titre</td>
         <td>Actions</td>
     </tr>
@@ -21,6 +22,7 @@ $posts = App::getInstance()->getTable('Post')->all();
     <?php foreach($posts as $post): ?>
     <tr>
         <td><?= $post->id;?></td>
+        <td><?= $post->category;?></td>
         <td><?= htmlspecialchars($post->title);?></td>
         <td>
             <a class="btn btn-primary" href="?p=posts.edit&id=<?= $post->id; ?>">Editer</a>
