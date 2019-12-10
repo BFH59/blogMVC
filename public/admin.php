@@ -49,4 +49,4 @@ if($page === 'home'){
 
 $content = ob_get_clean();
 
-require ROOT . '/pages/templates/default.php';
+require ROOT . '/pages/admin/templates/default.php';
