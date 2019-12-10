@@ -27,8 +27,8 @@ $comments = App::getInstance()->getTable('Comment')->commentToValidate();
         <tr>
             <td><?= $comment->id;?></td>
             <td><?= $comment->post_id;?></td>
-            <td><?= $comment->author;?></td>
-            <td><?= $comment->content;?></td>
+            <td><?= htmlspecialchars($comment->author);?></td>
+            <td><?= htmlspecialchars($comment->content);?></td>
             <td>
                 <!-- >creation du bouton validation. Pas de token CSRF utilisé donc création d'un formulaire specifique pour valider le commentaire -->
 

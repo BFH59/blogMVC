@@ -21,7 +21,7 @@ $posts = App::getInstance()->getTable('Post')->all();
     <?php foreach($posts as $post): ?>
     <tr>
         <td><?= $post->id;?></td>
-        <td><?= $post->title;?></td>
+        <td><?= htmlspecialchars($post->title);?></td>
         <td>
             <a class="btn btn-primary" href="?p=posts.edit&id=<?= $post->id; ?>">Editer</a>
         <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->

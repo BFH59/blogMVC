@@ -21,7 +21,7 @@ $categories = App::getInstance()->getTable('Category')->all();
     <?php foreach($categories as $categorie): ?>
     <tr>
         <td><?= $categorie->id;?></td>
-        <td><?= $categorie->title;?></td>
+        <td><?= htmlspecialchars($categorie->title);?></td>
         <td>
             <a class="btn btn-primary" href="?p=categories.edit&id=<?= $categorie->id; ?>">Editer</a>
         <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->

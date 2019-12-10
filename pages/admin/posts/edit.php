@@ -26,7 +26,7 @@ $form = new BootstrapForm($post);
 ?>
 
 <form method="post">
-    <?= $form->input('title', 'Titre'); ?>
+    <?= $form->input('title', 'Titre de l\'article'); ?>
     <?= $form->input('chapo', 'Chapo de l\'article', ['type' => 'textarea']); ?>
     <?= $form->input('content', 'Contenu de l\'article', ['type' => 'textarea']); ?>
     <?= $form->select('category_id', 'Catégorie de l\'article', $categories); ?>

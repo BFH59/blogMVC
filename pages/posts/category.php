@@ -20,10 +20,10 @@ $categories = $app->getTable('Category')->all();
         foreach ($posts as $post): ?>
 
 
-            <h2> <a href="<?= $post->url; ?>"><?= $post->title;?></a> </h2>
-            <p><em><?= $post->category;?></em></p>
+            <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
+            <p><em><?= htmlspecialchars($post->category);?></em></p>
 
-            <p><?= $post->excerpt; ?></p>
+            <p><?= htmlspecialchars($post->excerpt); ?></p>
 
 
         <?php endforeach;?>
@@ -32,7 +32,7 @@ $categories = $app->getTable('Category')->all();
     <div class="col-sm-4">
         <ul>
             <?php foreach ($categories as $category): ?>
-                <li><a href="<?= $category->url;?>"><?= $category->title;?></a></li>
+                <li><a href="<?= $category->url;?>"><?= htmlspecialchars($category->title);?></a></li>
             <?php endforeach;?>
         </ul>
     </div>

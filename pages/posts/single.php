@@ -45,8 +45,8 @@ if(!$comments){
     foreach ($comments as $comment) {
         ?>
         <div>
-            <p>Auteur: <?= $comment->author; ?> || <span>Posté le: <?= $comment->commentdate;?></span></p>
-            <p>Commentaire: <?= $comment->content; ?></p>
+            <p>Auteur: <?= htmlspecialchars($comment->author); ?> || <span>Posté le: <?= $comment->commentdate;?></span></p>
+            <p>Commentaire: <?= htmlspecialchars($comment->content); ?></p>
         </div>
         <?php
     }
