@@ -19,6 +19,8 @@ if($page === 'home'){
     require ROOT . '/pages/posts/category.php';
 } elseif ($page === 'posts.single'){
     require ROOT . '/pages/posts/single.php';
+} elseif($page ==='login'){
+    require ROOT . '/pages/users/login.php';
 }
 $content = ob_get_clean();
 

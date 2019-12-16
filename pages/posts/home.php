@@ -7,7 +7,7 @@
         foreach (App::getInstance()->getTable('Post')->last() as $post): ?>
 
 
-            <h2> <a href="<?= $post->url; ?>"><?= $post->title;?></a> </h2>
+            <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
             <p><em><?= $post->category;?></em></p>
 
             <p><?= $post->excerpt; ?></p>
@@ -19,7 +19,7 @@
     <div class="col-sm-4">
         <ul>
         <?php foreach (App::getInstance()->getTable('Category')->all() as $category): ?>
-            <li><a href="<?= $category->url;?>"><?= $category->title;?></a></li>
+            <li><a href="<?= $category->url;?>"><?= htmlspecialchars($category->title);?></a></li>
         <?php endforeach;?>
         </ul>
     </div>

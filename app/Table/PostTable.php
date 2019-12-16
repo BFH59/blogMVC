@@ -25,7 +25,7 @@ ORDER BY posts.post_date DESC");
      * @param $id
      * @return \App\Entity\PostEntity
      */
-    public function find($id){
+    public function findWithCategory($id){
             return $this->query("
 SELECT posts.id, posts.title, posts.chapo, posts.content, categories.title as category 
 FROM posts 
