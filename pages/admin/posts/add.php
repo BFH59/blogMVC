@@ -2,6 +2,7 @@
 use Core\HTML\BootstrapForm;
 
 $postTable = App::getInstance()->getTable('Post');
+
 if(!empty($_POST)){
     $result = $postTable->create([
         'title' => $_POST['title'],

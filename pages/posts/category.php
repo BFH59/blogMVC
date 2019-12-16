@@ -23,7 +23,7 @@ $categories = $app->getTable('Category')->all();
             <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
             <p><em><?= htmlspecialchars($post->category);?></em></p>
 
-            <p><?= htmlspecialchars($post->excerpt); ?></p>
+            <p><?= $post->excerpt; ?></p>
 
 
         <?php endforeach;?>
