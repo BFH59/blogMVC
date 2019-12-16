@@ -8,20 +8,18 @@ App::load();
 if(isset($_GET['p'])) {
     $page = $_GET['p'];
 }else{
-    $page = 'home';
+    $page = 'posts.index';
 
 }
-
-ob_start();
-if($page === 'home'){
-    require ROOT . '/pages/posts/home.php';
-} elseif ($page === 'posts.category'){
-    require ROOT . '/pages/posts/category.php';
-} elseif ($page === 'posts.single'){
-    require ROOT . '/pages/posts/single.php';
-} elseif($page ==='login'){
-    require ROOT . '/pages/users/login.php';
+//Gestion dynamique des routes
+$page = explode('.', $page);
+if($page[0] == 'admin'){
+    $controller = '\App\Controller\admin\\' . ucfirst($page[1]) . 'Controller';
+    $action = $page[2];
+} else{
+    $controller = '\App\Controller\\' . ucfirst($page[0]) . 'Controller';
+    $action = $page[1];
 }
-$content = ob_get_clean();
+$controller = new $controller();
+$controller->$action();
 
-require ROOT . '/pages/templates/default.php';

@@ -8,7 +8,7 @@ class PostTable extends Table
 {
 
     /**
-     * Recuperation des derniers articles
+     * Recuperation des derniers articles avec la categorie
      * @return array
      */
     public function last()

@@ -4,7 +4,7 @@
     <div class="col-sm-8">
         <?php
 
-        foreach (App::getInstance()->getTable('Post')->last() as $post): ?>
+        foreach ($posts as $post): ?>
 
 
             <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
@@ -18,7 +18,7 @@
 
     <div class="col-sm-4">
         <ul>
-        <?php foreach (App::getInstance()->getTable('Category')->all() as $category): ?>
+        <?php foreach ($categories as $category): ?>
             <li><a href="<?= $category->url;?>"><?= htmlspecialchars($category->title);?></a></li>
         <?php endforeach;?>
         </ul>

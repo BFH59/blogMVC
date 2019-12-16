@@ -2,29 +2,27 @@
 
 use Core\HTML\BootstrapForm;
 
-$app = App::getInstance();
-$post = $app->getTable('Post')->findWithCategory($_GET['id']);
-$commentTable = $app->getTable('Comment');
-$comments = $commentTable->showValidatedComment($_GET['id']);
-
-if(!empty($_POST)){
+if(!empty($_POST)) {
     $result = $commentTable->create([
         'post_id' => $post->id,
         'author' => $_POST['author'],
         'content' => $_POST['content']
     ]);
-    if($result){
+    if ($result) {
         ?>
-        <div class="alert alert-success">Merci pour votre commentaire. Celui-ci est soumis pour approbation avant d'être publié !</div>
-<?php
+        <div class="alert alert-success">Merci pour votre commentaire. Celui-ci est soumis pour approbation avant d'être
+            publié !
+        </div>
+        <?php
+
     }
 }
 
 if($post === false){
-    $app->notFound();
+    $this->notFound();
 }
 
-$app->title = $post->title;
+App::getInstance()->title = $post->title;
 ?>
 
 <h1><?= $post->title; ?></h1>
