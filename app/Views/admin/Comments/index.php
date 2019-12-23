@@ -1,8 +1,3 @@
-<?php
-
-$comments = App::getInstance()->getTable('Comment')->commentToValidate();
-
-?>
 <h1>Admin dashboard - Commentaires à valider</h1>
 
 <table class="table">
