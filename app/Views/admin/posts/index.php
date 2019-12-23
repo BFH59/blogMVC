@@ -10,6 +10,7 @@
         <td>ID</td>
         <td>Categorie</td>
         <td>Titre</td>
+        <td>Auteur</td>
         <td>Actions</td>
     </tr>
     </thead>
@@ -19,6 +20,7 @@
         <td><?= $post->id;?></td>
         <td><?= $post->category;?></td>
         <td><?= htmlspecialchars($post->title);?></td>
+        <td><?= htmlspecialchars($post->author);?></td>
         <td>
             <a class="btn btn-primary" href="?p=admin.posts.edit&id=<?= $post->id; ?>">Editer</a>
         <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->

@@ -14,7 +14,7 @@ class PostTable extends Table
     public function last()
     {
         return $this->query("
-SELECT posts.id, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
+SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
 LEFT JOIN categories on category_id = categories.id 
 ORDER BY posts.post_date DESC");
@@ -27,7 +27,7 @@ ORDER BY posts.post_date DESC");
      */
     public function findWithCategory($id){
             return $this->query("
-SELECT posts.id, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
+SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
 LEFT JOIN categories on category_id = categories.id 
 WHERE posts.id = ?", [$id], true);
@@ -41,7 +41,7 @@ WHERE posts.id = ?", [$id], true);
      */
     public function lastByCategory($category_id){
         return $this->query("
-SELECT posts.id, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
+SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
 LEFT JOIN categories on category_id = categories.id 
 WHERE categories.id = ? 

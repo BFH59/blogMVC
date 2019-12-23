@@ -22,11 +22,11 @@ class PostsController extends AppController
 
         if (!empty($_POST)) {
             $result = $this->Post->create([
+                'author' => $_POST['author'],
                 'title' => $_POST['title'],
                 'chapo' => $_POST['chapo'],
                 'content' => $_POST['content'],
-                'category_id' => $_POST['category_id'],
-                'user_id' => $_SESSION['auth']
+                'category_id' => $_POST['category_id']
             ]);
             if ($result) {
                 return $this->index();
@@ -42,6 +42,7 @@ class PostsController extends AppController
     public function edit(){
         if(!empty($_POST)){
             $result = $this->Post->update($_GET['id'], [
+                'author' => $_POST['author'],
                 'title' => $_POST['title'],
                 'chapo' => $_POST['chapo'],
                 'content' => $_POST['content'],
