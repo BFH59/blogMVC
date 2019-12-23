@@ -8,7 +8,7 @@
 
 
             <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
-            <p><em><?= $post->category;?></em></p>
+            <p>Catégorie : <em><?= $post->category;?></em>  <span>| Dernière modification : <em><?=$post->post_update_date;?></em></span></p>
 
             <p><?= $post->excerpt; ?></p>
 

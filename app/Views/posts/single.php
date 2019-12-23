@@ -14,7 +14,7 @@ if($post === false){
 App::getInstance()->title = $post->title;
 ?>
 
-<h1><?= $post->title; ?></h1>
+<h1><?= $post->title; ?></h1><span>Dernière modification le : <em><?=$post->post_update_date;?></em></span>
 <h3><?= $post->chapo; ?></h3>
 <p><?= $post->content;?></p>
 
@@ -28,7 +28,7 @@ if(!$comments){
 <div>
     <h3>Commentaires de l'article :</h3>
     <?php
-    //todo : ajouter date commentaire
+
     foreach ($comments as $comment) {
         ?>
         <div>
