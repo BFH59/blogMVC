@@ -1,22 +1,11 @@
+<?php if(isset($_SESSION['commentSuccess'])): ?>
+<div class="alert alert-success">
+    Votre commentaire a bien été soumis pour approbation. Celui-ci sera visible une fois validé par l'administrateur
+</div>
+<?php unset($_SESSION['commentSuccess']); ?>
+<?php endif;?>
+
 <?php
-
-use Core\HTML\BootstrapForm;
-
-if(!empty($_POST)) {
-    $result = $commentTable->create([
-        'post_id' => $post->id,
-        'author' => $_POST['author'],
-        'content' => $_POST['content']
-    ]);
-    if ($result) {
-        ?>
-        <div class="alert alert-success">Merci pour votre commentaire. Celui-ci est soumis pour approbation avant d'être
-            publié !
-        </div>
-        <?php
-
-    }
-}
 
 if($post === false){
     $this->notFound();
@@ -55,13 +44,10 @@ if(!$comments){
 <div>
     <h3>Laissez nous un commentaire !</h3>
 
-    <?php
-    $form = new BootstrapForm($_POST);
-    ?>
-
-    <form method="post">
+    <form method="post" action="index.php?p=comments.add">
         <?= $form->input('author', 'Votre pseudo'); ?>
         <?= $form->input('content', 'Votre commentaire', ['type' => 'textarea']); ?>
+        <input type="hidden" name="id" value="<?= $post->id ?>">
         <button class="btn btn-primary">Envoyer</button>
     </form>
 

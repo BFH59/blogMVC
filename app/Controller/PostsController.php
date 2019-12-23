@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Core\Controller\Controller;
+use Core\HTML\BootstrapForm;
 
 class PostsController extends AppController
 {
@@ -35,7 +36,8 @@ class PostsController extends AppController
     public function single(){
         $post = $this->Post->findWithCategory($_GET['id']);
         $comments = $this->Comment->showValidatedComment($_GET['id']);
-        $this->render('posts.single', compact('post', 'comments'));
+        $form = new BootstrapForm();
+        $this->render('posts.single', compact('post', 'comments','form'));
     }
 
 }

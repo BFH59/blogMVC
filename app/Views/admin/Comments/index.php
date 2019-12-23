@@ -32,14 +32,14 @@ $comments = App::getInstance()->getTable('Comment')->commentToValidate();
             <td>
                 <!-- >creation du bouton validation. Pas de token CSRF utilisé donc création d'un formulaire specifique pour valider le commentaire -->
 
-                <form action="?p=comments.validate" method="post" style="display:inline;">
+                <form action="?p=admin.comments.validate" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?= $comment->id ?>">
-                    <button type="submit" class="btn btn-success" href="?p=comments.validate&id=<?= $comment->id; ?>">Valider</button>
+                    <button type="submit" class="btn btn-success" href="?p=admin.comments.validate&id=<?= $comment->id; ?>">Valider</button>
                 </form>
                 <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
-                <form action="?p=comments.delete" method="post" style="display:inline;">
+                <form action="?p=admin.comments.delete" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?= $comment->id ?>">
-                    <button type="submit" class="btn btn-danger" href="?p=comments.delete&id=<?= $comment->id; ?>">Supprimer</button>
+                    <button type="submit" class="btn btn-danger" href="?p=admin.comments.delete&id=<?= $comment->id; ?>">Supprimer</button>
                 </form>
             </td>
         </tr>
