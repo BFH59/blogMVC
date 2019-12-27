@@ -1,12 +1,7 @@
-<?php
-
-$categories = App::getInstance()->getTable('Category')->all();
-
-?>
 <h1>Admin dashboard - Gestion des catégories</h1>
 
 <p>
-    <a href="?p=categories.add" class="btn btn-success">Ajouter une catégorie</a>
+    <a href="?p=admin.categories.add" class="btn btn-success">Ajouter une catégorie</a>
 </p>
 
 <table class="table">
@@ -18,16 +13,16 @@ $categories = App::getInstance()->getTable('Category')->all();
     </tr>
     </thead>
     <tbody>
-    <?php foreach($categories as $categorie): ?>
+    <?php foreach($items as $categorie): ?>
     <tr>
         <td><?= $categorie->id;?></td>
         <td><?= htmlspecialchars($categorie->title);?></td>
         <td>
-            <a class="btn btn-primary" href="?p=categories.edit&id=<?= $categorie->id; ?>">Editer</a>
+            <a class="btn btn-primary" href="?p=admin.categories.edit&id=<?= $categorie->id; ?>">Editer</a>
         <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
-            <form action="?p=categories.delete" method="post" style="display:inline;">
+            <form action="?p=admin.categories.delete" method="post" style="display:inline;">
                 <input type="hidden" name="id" value="<?= $categorie->id ?>">
-                <button type="submit" class="btn btn-danger" href="?p=categories.delete&id=<?= $categorie->id; ?>">Supprimer</button>
+                <button type="submit" class="btn btn-danger" href="?p=admin.categories.delete&id=<?= $categorie->id; ?>">Supprimer</button>
             </form>
         </td>
     </tr>

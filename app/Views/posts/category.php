@@ -1,16 +1,3 @@
-<?php
-$app = App::getInstance();
-$categorie = $app->getTable('Category')->find($_GET['id']);
-
-
-if($categorie === false){
-    $app->notFound();
-}
-$posts = $app->getTable('Post')->lastByCategory($_GET['id']);
-$categories = $app->getTable('Category')->all();
-
- ?>
-
 <h1><?= $categorie->title; ?></h1>
 
 <div class="row">
@@ -21,7 +8,7 @@ $categories = $app->getTable('Category')->all();
 
 
             <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
-            <p><em><?= htmlspecialchars($post->category);?></em></p>
+            <p>Catégorie : <em><?= htmlspecialchars($post->category);?></em><span> | Dernière modification : <em><?=$post->post_update_date;?></em></span></p>
 
             <p><?= $post->excerpt; ?></p>
 

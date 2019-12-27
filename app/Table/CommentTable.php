@@ -14,7 +14,7 @@ WHERE comments.post_id = ? AND comments.validated = 1
 ORDER BY commentdate DESC ", [$id]);
 
     }
-    //genere la liste des commentaires qui doivent être validé
+    //genere la liste des commentaires qui doivent être validés
     public function commentToValidate(){
         return $this->query("
 SELECT comments.id, comments.post_id, comments.author, comments.content, comments.validated, DATE_FORMAT(comment_date, '%d/%m/%Y à %H:%i:%s ') as commentdate  

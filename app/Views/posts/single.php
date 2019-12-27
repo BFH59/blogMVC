@@ -1,33 +1,21 @@
+<?php if(isset($_SESSION['commentSuccess'])): ?>
+<div class="alert alert-success">
+    Votre commentaire a bien été soumis pour approbation. Celui-ci sera visible une fois validé par l'administrateur
+</div>
+<?php unset($_SESSION['commentSuccess']); ?>
+<?php endif;?>
+
 <?php
-
-use Core\HTML\BootstrapForm;
-
-$app = App::getInstance();
-$post = $app->getTable('Post')->findWithCategory($_GET['id']);
-$commentTable = $app->getTable('Comment');
-$comments = $commentTable->showValidatedComment($_GET['id']);
-
-if(!empty($_POST)){
-    $result = $commentTable->create([
-        'post_id' => $post->id,
-        'author' => $_POST['author'],
-        'content' => $_POST['content']
-    ]);
-    if($result){
-        ?>
-        <div class="alert alert-success">Merci pour votre commentaire. Celui-ci est soumis pour approbation avant d'être publié !</div>
-<?php
-    }
-}
 
 if($post === false){
-    $app->notFound();
+    $this->notFound();
 }
 
-$app->title = $post->title;
+App::getInstance()->title = $post->title;
 ?>
 
 <h1><?= $post->title; ?></h1>
+<span>Auteur : <em><?= $post->author; ?></em></span><span> | Dernière modification le : <em><?=$post->post_update_date;?></em></span>
 <h3><?= $post->chapo; ?></h3>
 <p><?= $post->content;?></p>
 
@@ -41,7 +29,7 @@ if(!$comments){
 <div>
     <h3>Commentaires de l'article :</h3>
     <?php
-    //todo : ajouter date commentaire
+
     foreach ($comments as $comment) {
         ?>
         <div>
@@ -57,13 +45,10 @@ if(!$comments){
 <div>
     <h3>Laissez nous un commentaire !</h3>
 
-    <?php
-    $form = new BootstrapForm($_POST);
-    ?>
-
-    <form method="post">
+    <form method="post" action="index.php?p=comments.add">
         <?= $form->input('author', 'Votre pseudo'); ?>
         <?= $form->input('content', 'Votre commentaire', ['type' => 'textarea']); ?>
+        <input type="hidden" name="id" value="<?= $post->id ?>">
         <button class="btn btn-primary">Envoyer</button>
     </form>
 
