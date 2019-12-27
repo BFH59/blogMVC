@@ -18,9 +18,10 @@ class UsersController extends AppController
     public function register(){
         $errors = [];
         $success = [];
+        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
         if (isset($_POST)) {
 
-            if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['email'])) {
+            if ((!empty($_POST['username'])) && (!empty($_POST['password'])) && (!empty($_POST['password2'])) && (!empty($_POST['email']))) {
                 if ($_POST['password'] === $_POST['password2']) {
                     if (!$this->User->userExists($_POST['username'], $_POST['email'])) {
                         $result = $this->User->create([
