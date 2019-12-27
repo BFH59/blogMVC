@@ -18,5 +18,8 @@ class AppController extends \App\Controller\AppController
         if (!$auth->logged()){
             $this->forbidden();
         }
+        if (!$auth->isAdmin()){
+            $this->notAllowed();
+        }
     }
 }

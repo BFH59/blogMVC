@@ -30,6 +30,7 @@ class DBAuth {
         if($user){
            if($user->password === sha1($password)){
                $_SESSION['auth'] = $user->id;
+               $_SESSION['usertype'] = $user->usertype;
                return true;
            }
         }
@@ -39,5 +40,12 @@ class DBAuth {
 
     public function logged(){
         return isset($_SESSION['auth']);
+    }
+// verifie si l'utilisateur est admin (usertype = 2) pour accès au dashboard
+    public function isAdmin(){
+        if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === '2'){
+            return true;
+        }
+        return false;
     }
 }
