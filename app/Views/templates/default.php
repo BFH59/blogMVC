@@ -19,7 +19,7 @@
 <main role="main" class="container">
 
     <div class="starter-template" style="padding-top: 100px;">
-        <?= htmlspecialchars($content); ?>
+        <?= $content; ?>
     </div>
 
 </main><!-- /.container -->
