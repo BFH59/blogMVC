@@ -5,6 +5,12 @@
 <?php unset($_SESSION['commentSuccess']); ?>
 <?php endif;?>
 
+<?php if(isset($_SESSION['commentFail'])): ?>
+    <div class="alert alert-danger">
+        Vous devez remplir tous les champs avant d'envoyer votre commentaire
+    </div>
+    <?php unset($_SESSION['commentFail']); ?>
+<?php endif;?>
 <?php
 
 if($post === false){

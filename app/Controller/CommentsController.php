@@ -15,8 +15,11 @@ class CommentsController extends AppController
 //voir pour message confirmation
 
     public function add(){
-        if(!empty($_POST)) {
-            $postId = $_POST['id'];
+
+        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
+        $postId = $_POST['id'];
+        if(!empty($_POST['author']) && !empty($_POST['content'])) {
+
             $result = $this->Comment->create([
                 'post_id' => $postId,
                 'author' => $_POST['author'],
@@ -26,6 +29,9 @@ class CommentsController extends AppController
                 $_SESSION['commentSuccess'] = true;
                 header('location: index.php?p=posts.single&id=' . $postId . '');
             }
+        }else{
+            $_SESSION['commentFail'] = true;
+            header('location: index.php?p=posts.single&id=' . $postId . '');
         }
     }
 }
