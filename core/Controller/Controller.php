@@ -25,6 +25,6 @@ class Controller
     }
     protected function notAllowed(){
         header('HTTP/1.0 403 Forbidden');
-        die('Vous êtes correctement connecté mais vous n\'avez pas les droits necessaire pour accéder à la page');
+        die('Vous êtes correctement connecté mais vous n\'avez pas les droits necessaires pour accéder à la page');
     }
 }

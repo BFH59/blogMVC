@@ -25,6 +25,7 @@ class DBAuth {
      * @param $password
      * @return boolean
      */
+    /**
     public function login($username, $password){
         $user = $this->db->prepare('SELECT * FROM users WHERE username = ?',[$username], null, true);
         if($user){
@@ -37,7 +38,7 @@ class DBAuth {
         return false;
 
     }
-
+*/
     public function logged(){
         return isset($_SESSION['auth']);
     }
