@@ -1,0 +1,19 @@
+{
+  "name": "bfh59/blogMVC",
+  "description": "Projet 5",
+  "authors": [
+    {
+      "name": "Julien Plumecocq",
+      "email": "b4ckfr0mh3ll@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app",
+      "Core\\": "core"
+    }
+  }
+}

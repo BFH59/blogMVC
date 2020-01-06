@@ -17,7 +17,8 @@ class App
         }
         return self::$_instance;
     }
-
+    //ancien code de lautoloader "maison" devenu inutile car utilisation de l autoloader de composer
+/**
     public static function load(){
         session_start();
         require ROOT . '/app/Autoloader.php';
@@ -25,6 +26,7 @@ class App
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
     }
+*/
 //factory Table
     public function getTable($name){
         $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
