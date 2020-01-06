@@ -20,25 +20,6 @@ class DBAuth {
         return false;
     }
 
-    /**
-     * @param $username
-     * @param $password
-     * @return boolean
-     */
-    /**
-    public function login($username, $password){
-        $user = $this->db->prepare('SELECT * FROM users WHERE username = ?',[$username], null, true);
-        if($user){
-           if($user->password === sha1($password)){
-               $_SESSION['auth'] = $user->id;
-               $_SESSION['usertype'] = $user->usertype;
-               return true;
-           }
-        }
-        return false;
-
-    }
-*/
     public function logged(){
         return isset($_SESSION['auth']);
     }
