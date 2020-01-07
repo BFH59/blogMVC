@@ -20,10 +20,10 @@ if($post === false){
 App::getInstance()->title = $post->title;
 ?>
 
-<h1><?= $post->title; ?></h1>
-<span>Auteur : <em><?= $post->author; ?></em></span><span> | Dernière modification le : <em><?=$post->post_update_date;?></em></span>
-<h3><?= $post->chapo; ?></h3>
-<p><?= $post->content;?></p>
+<h1><?= htmlspecialchars($post->title); ?></h1>
+<span>Auteur : <em><?= htmlspecialchars($post->author); ?></em></span><span> | Dernière modification le : <em><?=htmlspecialchars($post->post_update_date);?></em></span>
+<h3><?= htmlspecialchars($post->chapo); ?></h3>
+<p><?= htmlspecialchars($post->content);?></p>
 
 <?php
 if(!$comments){
@@ -39,7 +39,7 @@ if(!$comments){
     foreach ($comments as $comment) {
         ?>
         <div>
-            <p>Auteur: <?= htmlspecialchars($comment->author); ?> || <span>Posté le: <?= $comment->commentdate;?></span></p>
+            <p>Auteur: <?= htmlspecialchars($comment->author); ?> || <span>Posté le: <?= htmlspecialchars($comment->commentdate);?></span></p>
             <p>Commentaire: <?= htmlspecialchars($comment->content); ?></p>
         </div>
         <?php
@@ -54,7 +54,7 @@ if(!$comments){
     <form method="post" action="index.php?p=comments.add">
         <?= $form->input('author', 'Votre pseudo'); ?>
         <?= $form->input('content', 'Votre commentaire', ['type' => 'textarea']); ?>
-        <input type="hidden" name="id" value="<?= $post->id ?>">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($post->id) ?>">
         <button class="btn btn-primary">Envoyer</button>
     </form>
 

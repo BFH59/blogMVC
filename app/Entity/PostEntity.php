@@ -13,8 +13,8 @@ class PostEntity extends Entity
 
     public function getExcerpt(){
 
-        $html = '<p>' . $this->chapo . '</p>';
-        $html .= '<p><a href="' . $this->getUrl() .'">Lire la suite</a></p>';
+        $html = '<p>' . htmlspecialchars($this->chapo) . '</p>';
+        $html .= '<p><a href="' . htmlspecialchars($this->getUrl()) .'">Lire la suite</a></p>';
 
         return $html;
     }

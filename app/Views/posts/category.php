@@ -1,4 +1,4 @@
-<h1><?= $categorie->title; ?></h1>
+<h1><?= htmlspecialchars($categorie->title); ?></h1>
 
 <div class="row">
     <div class="col-sm-8">
