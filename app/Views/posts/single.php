@@ -17,7 +17,7 @@ if($post === false){
     $this->notFound();
 }
 
-App::getInstance()->title = htmlspecialchars($post->title);
+App::getInstance()->title = $post->title;
 ?>
 
 <h1><?= htmlspecialchars($post->title); ?></h1>
