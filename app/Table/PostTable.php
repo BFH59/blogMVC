@@ -2,6 +2,7 @@
 
 namespace App\Table;
 
+use App\Entity\PostEntity;
 use \Core\Table\Table;
 
 class PostTable extends Table
@@ -11,14 +12,16 @@ class PostTable extends Table
      * Recuperation des derniers articles avec la categorie
      * @return array
      */
+
     public function last()
     {
         return $this->query("
 SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
-LEFT JOIN categories on category_id = categories.id 
+LEFT JOIN categories on categoryid = categories.id 
 ORDER BY posts.post_date DESC");
     }
+
 
     /**
      * recupère un post en liant la categorie qui lui est associée
@@ -29,22 +32,22 @@ ORDER BY posts.post_date DESC");
             return $this->query("
 SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
-LEFT JOIN categories on category_id = categories.id 
+LEFT JOIN categories on categoryid = categories.id 
 WHERE posts.id = ?", [$id], true);
 
     }
 
     /**
      * recupère tous les articles liée à une categorie
-     * @param $category_id
+     * @param $categoryid
      * @return array
      */
-    public function lastByCategory($category_id){
+    public function lastByCategory($categoryid){
         return $this->query("
 SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
-LEFT JOIN categories on category_id = categories.id 
+LEFT JOIN categories on categoryid = categories.id 
 WHERE categories.id = ? 
-ORDER BY posts.post_date DESC", [$category_id]);
+ORDER BY posts.post_date DESC", [$categoryid]);
     }
 }

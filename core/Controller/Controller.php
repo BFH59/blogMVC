@@ -2,10 +2,13 @@
 
 namespace Core\Controller;
 
+
+
 class Controller
 {
     protected $viewPath;
     protected $template;
+
 
     protected function render($view, $variables = []){
         ob_start();

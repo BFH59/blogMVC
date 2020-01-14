@@ -17,13 +17,13 @@ if($post === false){
     $this->notFound();
 }
 
-App::getInstance()->title = $post->title;
+App::getInstance()->title = $post->getTitle();
 ?>
 
-<h1><?= htmlspecialchars($post->title); ?></h1>
-<span>Auteur : <em><?= htmlspecialchars($post->author); ?></em></span><span> | Dernière modification le : <em><?=htmlspecialchars($post->post_update_date);?></em></span>
-<h3><?= htmlspecialchars($post->chapo); ?></h3>
-<p><?= htmlspecialchars($post->content);?></p>
+<h1><?= htmlspecialchars($post->getTitle()); ?></h1>
+<span>Auteur : <em><?= htmlspecialchars($post->getAuthor()); ?></em></span><span> | Dernière modification le : <em><?=htmlspecialchars($post->getPostUpdateDate());?></em></span>
+<h3><?= htmlspecialchars($post->getChapo()); ?></h3>
+<p><?= htmlspecialchars($post->getContent());?></p>
 
 <?php
 if(!$comments){
@@ -39,8 +39,8 @@ if(!$comments){
     foreach ($comments as $comment) {
         ?>
         <div>
-            <p>Auteur: <?= htmlspecialchars($comment->author); ?> || <span>Posté le: <?= htmlspecialchars($comment->commentdate);?></span></p>
-            <p>Commentaire: <?= htmlspecialchars($comment->content); ?></p>
+            <p>Auteur: <?= htmlspecialchars($comment->getAuthor()); ?> || <span>Posté le: <?= htmlspecialchars($comment->getCommentDate());?></span></p>
+            <p>Commentaire: <?= htmlspecialchars($comment->getContent()); ?></p>
         </div>
         <?php
     }
@@ -54,7 +54,7 @@ if(!$comments){
     <form method="post" action="index.php?p=comments.add">
         <?= $form->input('author', 'Votre pseudo'); ?>
         <?= $form->input('content', 'Votre commentaire', ['type' => 'textarea']); ?>
-        <input type="hidden" name="id" value="<?= htmlspecialchars($post->id) ?>">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($post->getId()) ?>">
         <button class="btn btn-primary">Envoyer</button>
     </form>
 

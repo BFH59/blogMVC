@@ -15,9 +15,10 @@ class UserTable extends Table
     public function login($username, $password){
         $user = $this->query('SELECT * FROM users WHERE username = ?',[$username],  true);
         if($user){
-            if($user->password === sha1($password)){
-                $_SESSION['auth'] = $user->id;
-                $_SESSION['usertype'] = $user->usertype;
+            //var_dump($user);die();
+            if($user->getPassword() === sha1($password)){
+                $_SESSION['auth'] = $user->getId();
+                $_SESSION['usertype'] = $user->getUsertype();
                 return true;
             }
         }

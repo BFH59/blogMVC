@@ -13,7 +13,7 @@ class MysqlDatabase extends Database
     private $db_host;
     private $pdo;
 
-    public function __construct($db_name, $db_user='root', $db_pass='root', $db_host = '127.0.0.1:8889')
+    public function __construct($db_name, $db_user, $db_pass, $db_host)
     {
         $this->db_host = $db_host;
         $this->db_name = $db_name;
@@ -24,7 +24,7 @@ class MysqlDatabase extends Database
     private function getPDO(){
 //verifie si une instance de PDO existe deja sinon on l'a créée
         if($this->pdo === null) {
-            $pdo = new PDO('mysql:dbname=blogP5;host=127.0.0.1:8889', 'root', 'root');
+            $pdo = new PDO('mysql:dbname='.$this->db_name.';host='.$this->db_host, ''.$this->db_user.'', ''.$this->db_pass.'');
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         }
@@ -46,14 +46,15 @@ class MysqlDatabase extends Database
             $req->setFetchMode(PDO::FETCH_OBJ);
         } else {
 
-            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $class_name, [[]]); //pdo fetch class s occupe de lhydratation
         }
         if($one){
-            $datas = $req->fetch();
+            $data = $req->fetch();
         }else {
-            $datas = $req->fetchAll();
+            $data = $req->fetchAll();
         }
-        return $datas;
+        //var_dump($data);die();
+        return $data;
     }
 
     public function prepare($statement, $attributes, $class_name = null, $one = false){
@@ -72,14 +73,15 @@ class MysqlDatabase extends Database
             $req->setFetchMode(PDO::FETCH_OBJ);
         } else {
 
-            $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+            $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $class_name, [[]]); //pdo fetch class s occupe de lhydratation
         }
         if($one){
-            $datas = $req->fetch();
+            $data = $req->fetch();
         }else {
-            $datas = $req->fetchAll();
+            $data = $req->fetchAll();
         }
-        return $datas;
+        //var_dump($data);
+        return $data;
     }
 
     public function lastInsertId(){

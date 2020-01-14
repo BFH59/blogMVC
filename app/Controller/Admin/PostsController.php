@@ -20,13 +20,14 @@ class PostsController extends AppController
 
     public function add(){
 
-        if (!empty($_POST)) {
+        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
+        if (!empty($_POST['author'] && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content']))) {
             $result = $this->Post->create([
                 'author' => $_POST['author'],
                 'title' => $_POST['title'],
                 'chapo' => $_POST['chapo'],
                 'content' => $_POST['content'],
-                'category_id' => $_POST['category_id']
+                'categoryid' => $_POST['categoryid']
             ]);
             if ($result) {
                 return $this->index();
@@ -34,6 +35,7 @@ class PostsController extends AppController
         }
         $this->loadModel('Category');
         $categories = $this->Category->listToArray('id', 'title');
+
         $form = new BootstrapForm($_POST);
         $this->render('admin.posts.edit', compact('categories', 'form'));
 
@@ -41,12 +43,13 @@ class PostsController extends AppController
 
     public function edit(){
         if(!empty($_POST)){
+
             $result = $this->Post->update($_GET['id'], [
                 'author' => $_POST['author'],
                 'title' => $_POST['title'],
                 'chapo' => $_POST['chapo'],
                 'content' => $_POST['content'],
-                'category_id' => $_POST['category_id'],
+                'categoryid' => $_POST['categoryid'],
                 'post_update_date' => date("Y-m-d H:i:s")
             ]);
             if($result){

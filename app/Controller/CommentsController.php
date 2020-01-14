@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-
+use Core\Session;
 class CommentsController extends AppController
 {
     public function __construct()
@@ -17,7 +17,7 @@ class CommentsController extends AppController
     public function add(){
 
         $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
-        $postId = $_POST['id'];
+        $postId = htmlspecialchars($_POST['id']);
         if(!empty($_POST['author']) && !empty($_POST['content'])) {
 
             $result = $this->Comment->create([
