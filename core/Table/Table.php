@@ -58,14 +58,31 @@ class Table
 
     // function qui recupère tous les enregistrements et créé un tableau
 
+    /**
+     * @param $key
+     * @param $value
+     * @return array
+     */
     public function listToArray($key, $value){
+
+        //$key = id
+        //$value = title
+
         $records = $this->all();
         $return = [];
+        //var_dump($records);
 
         foreach($records as $k => $v){
+            //var_dump($records);
+            //$value = 'get'.ucfirst($value)();
+            //$key = 'get'.ucfirst($key)();
+
             $return[$v->$key] = $v->$value;
+
         }
+        //var_dump($return);die();
         return $return;
+
     }
 
     public function query($statement, $attributes = null, $one = false){

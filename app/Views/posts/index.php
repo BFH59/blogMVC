@@ -7,10 +7,10 @@
         foreach ($posts as $post): ?>
 
 
-            <h2> <a href="<?= $post->url; ?>"><?= htmlspecialchars($post->title);?></a> </h2>
-            <p>Catégorie : <em><?= htmlspecialchars($post->category);?></em>  <span>| Dernière modification : <em><?=htmlspecialchars($post->post_update_date);?></em></span></p>
+            <h2> <a href="<?= $post->getUrl(); ?>"><?= htmlspecialchars($post->getTitle());?></a> </h2>
+            <p>Auteur : <em><?= htmlspecialchars($post->getAuthor());?></em>  <span>| Dernière modification : <em><?=htmlspecialchars($post->getPostUpdateDate());?></em></span></p>
 
-            <p><?= $post->excerpt; ?></p>
+            <p><?= $post->getExcerpt(); ?></p>
 
 
         <?php endforeach;?>
@@ -19,7 +19,7 @@
     <div class="col-sm-4">
         <ul>
         <?php foreach ($categories as $category): ?>
-            <li><a href="<?= $category->url;?>"><?= htmlspecialchars($category->title);?></a></li>
+            <li><a href="<?= $category->getUrl();?>"><?= htmlspecialchars($category->getTitle());?></a></li>
         <?php endforeach;?>
         </ul>
     </div>
