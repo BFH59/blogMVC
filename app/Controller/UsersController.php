@@ -17,18 +17,21 @@ class UsersController extends AppController
     public function register(){
         $errors = [];
         $success = [];
-        $post = array_map('trim', $_POST); //supprime tous les espace avant et après
+        $post = filter_input_array(INPUT_POST, $_POST);
         if (isset($post)) {
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
             $password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
 
+            //enleve espace avant et après la chaine
 
+            $username = trim($username);
+            $password = trim($password);
+            $password2 = trim($password2);
+            $email = trim($email);
 
-
-
-            if ((!empty($username)) && (!empty($password)) && (!empty($password2)) && (!empty($email))) {
+            if (($username != "") && ($password != "") && ($password2 != "") && ($email != "")) {
                 if ($password === $password2) {
                     if (!$this->User->userExists($username, $email)) {
                         $result = $this->User->create([
@@ -56,8 +59,11 @@ class UsersController extends AppController
 
     public function login(){
         $errors = false;
+        $post = filter_input_array(INPUT_POST, $_POST);
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        $username = trim($username);
+        $password = trim($password);
         if(!empty($username) && !empty($password)){
 
             //$auth = new DBAuth(App::getInstance()->getDb());
@@ -68,7 +74,7 @@ class UsersController extends AppController
             }
         }
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($post);
         $this->render('users.login', compact('form', 'errors'));
 
     }
