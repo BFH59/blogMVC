@@ -12,7 +12,7 @@ class App
 
 //singleton pour limiter la class App à une seule instance
     public static function getInstance(){
-        if(is_null(self::$_instance)){
+        if(self::$_instance === NULL){
             self::$_instance = new App();
         }
         return self::$_instance;
