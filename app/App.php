@@ -36,7 +36,7 @@ class App
 //factory db et check pour initier une seule instance
     public function getDb(){
         $config = Config::getInstance(ROOT . '/app/config/config.php');
-        if(is_null($this->db_instance)){
+        if($this->db_instance === NULL){
             $this->db_instance =  new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
         }
         return $this->db_instance;

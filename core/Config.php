@@ -12,7 +12,7 @@ class Config
     //singleton pour limiter la classe à une seule instanciation
     //recupére l instance dans $_instance si elle existe
     public static function getInstance($file){
-        if(is_null(self::$_instance)){
+        if(self::$_instance === NULL){
             self::$_instance = new Config($file);
         }
         return self::$_instance;
