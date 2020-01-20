@@ -20,13 +20,19 @@ class PostsController extends AppController
 
     public function add(){
 
-        $post = array_map('trim', $_POST); //supprime tous les espace avant et après
+        $post = filter_input_array(INPUT_POST, $_POST);
+
         //encapsule superglobale et nettoie les données
         $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
         $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
+        //supprime espaces avant et apres la chaine
+        $author = trim($author);
+        $title = trim($title);
+        $chapo = trim($chapo);
+        $content = trim($content);
 
 
         if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
