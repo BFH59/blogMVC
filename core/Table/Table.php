@@ -13,7 +13,7 @@ class Table
     {
         $this->db = $db;
 
-        if(is_null($this->table)) {
+        if($this->table === NULL) {
             $parts = explode('\\', get_class($this));
             $class_name = end($parts);
             $this->table = strtolower(str_replace('Table', '', $class_name)) . 's';
@@ -73,14 +73,10 @@ class Table
         //var_dump($records);
 
         foreach($records as $k => $v){
-            //var_dump($records);
-            //$value = 'get'.ucfirst($value)();
-            //$key = 'get'.ucfirst($key)();
 
             $return[$v->$key] = $v->$value;
-
         }
-        //var_dump($return);die();
+
         return $return;
 
     }
