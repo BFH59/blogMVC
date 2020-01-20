@@ -28,7 +28,7 @@ class CommentsController extends AppController
 
     public function validate()
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
             $this->Comment->update($id, [
                 'validated' => 1

@@ -21,6 +21,7 @@ class CategoriesController extends AppController
     public function add(){
 
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $title = trim($title);
         if (!empty($title)) {
             $result = $this->Category->create([
                 'title' => $title,

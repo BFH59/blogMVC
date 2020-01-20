@@ -1,11 +1,11 @@
 <?php if(!empty($errors)): ?>
     <div class="alert alert-danger">
-        <?= $errors;?>
+        <?= htmlspecialchars($errors);?>
     </div>
 <?php endif;?>
 <?php if(!empty($success)): ?>
     <div class="alert alert-success">
-        <?= $success;?>
+        <?= htmlspecialchars($success);?>
     </div>
 <?php endif;?>
 <form method="post">

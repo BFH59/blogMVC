@@ -20,6 +20,8 @@ class CommentsController extends AppController
         $postId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+        $author = trim($author);
+        $content = trim($content);
 
 
         if(!empty($author) && !empty($content)) {
