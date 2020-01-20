@@ -19,16 +19,18 @@ class CommentsController extends AppController
 
 
     public function delete(){
-        if (!empty($_POST)) {
-            $result = $this->Comment->delete($_POST['id']);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($id)) {
+            $result = $this->Comment->delete($id);
             return $this->index();
         }
     }
 
     public function validate()
     {
-        if (!empty($_POST)) {
-            $result = $this->Comment->update($_POST['id'], [
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($id)) {
+            $result = $this->Comment->update($id, [
                 'validated' => 1
             ]);
             return $this->index();
