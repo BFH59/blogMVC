@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-use Core\Session;
 class CommentsController extends AppController
 {
     public function __construct()
