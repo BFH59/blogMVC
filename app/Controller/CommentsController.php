@@ -17,13 +17,17 @@ class CommentsController extends AppController
     public function add(){
 
         $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
-        $postId = htmlspecialchars($_POST['id']);
-        if(!empty($_POST['author']) && !empty($_POST['content'])) {
+        $postId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+        if(!empty($author) && !empty($content)) {
 
             $result = $this->Comment->create([
                 'post_id' => $postId,
-                'author' => $_POST['author'],
-                'content' => $_POST['content']
+                'author' => $author,
+                'content' => $content
             ]);
             if ($result) {
                 $_SESSION['commentSuccess'] = true;

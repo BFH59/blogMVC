@@ -21,21 +21,25 @@ class PostsController extends AppController
         $this->render('posts.index', compact('posts', 'categories'));
     }
     public function category(){
-        $categorie = $this->Category->find($_GET['id']);
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $categorie = $this->Category->find($id);
 
 
         if($categorie === false){
             $this->notFound();
         }
-        $posts = $this->Post->lastByCategory($_GET['id']);
+        $posts = $this->Post->lastByCategory($id);
         $categories = $this->Category->all();
         $this->render('posts.category', compact('posts', 'categories','categorie'));
 
     }
 
     public function single(){
-        $post = $this->Post->findWithCategory($_GET['id']);
-        $comments = $this->Comment->showValidatedComment($_GET['id']);
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $post = $this->Post->findWithCategory($id);
+        $comments = $this->Comment->showValidatedComment($id);
         $form = new BootstrapForm();
         $this->render('posts.single', compact('post', 'comments','form'));
     }

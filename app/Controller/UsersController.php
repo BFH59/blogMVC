@@ -19,14 +19,22 @@ class UsersController extends AppController
         $success = [];
         $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
         if (isset($_POST)) {
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+            $password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ((!empty($_POST['username'])) && (!empty($_POST['password'])) && (!empty($_POST['password2'])) && (!empty($_POST['email']))) {
-                if ($_POST['password'] === $_POST['password2']) {
-                    if (!$this->User->userExists($_POST['username'], $_POST['email'])) {
+
+
+
+
+            if ((!empty($username)) && (!empty($password)) && (!empty($password2)) && (!empty($email))) {
+                if ($password === $password2) {
+                    if (!$this->User->userExists($username, $email)) {
                         $result = $this->User->create([
-                            'username' => $_POST['username'],
-                            'password' => sha1($_POST['password']),
-                            'email' => $_POST['email']
+                            'username' => $username,
+                            'password' => sha1($password),
+                            'email' => $email
                         ]);
                         if ($result) {
                             $success = 'Compte créé avec succès';
@@ -49,8 +57,10 @@ class UsersController extends AppController
     public function login(){
         $errors = false;
         if(!empty($_POST)){
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
             //$auth = new DBAuth(App::getInstance()->getDb());
-            if($this->User->login($_POST['username'], $_POST['password'])){
+            if($this->User->login($username, $password)){
                 header('location: index.php');
             } else {
                 $errors = true;

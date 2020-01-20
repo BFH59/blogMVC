@@ -54,7 +54,7 @@ class CategoriesController extends AppController
     public function delete(){
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
-            $result = $this->Category->delete($id);
+            $this->Category->delete($id);
             return $this->index();
         }
     }
