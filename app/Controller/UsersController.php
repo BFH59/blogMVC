@@ -17,8 +17,8 @@ class UsersController extends AppController
     public function register(){
         $errors = [];
         $success = [];
-        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
-        if (isset($_POST)) {
+        $post = array_map('trim', $_POST); //supprime tous les espace avant et après
+        if (isset($post)) {
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
             $password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -49,16 +49,17 @@ class UsersController extends AppController
                 $errors = 'Veuillez remplir tous les champs pour vous inscrire';
             }
         }
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($post);
         $this->render('users.register', compact('form', 'errors', 'success'));
 
     }
 
     public function login(){
         $errors = false;
-        if(!empty($_POST)){
-            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+        if(!empty($username) && !empty($password)){
+
             //$auth = new DBAuth(App::getInstance()->getDb());
             if($this->User->login($username, $password)){
                 header('location: index.php');

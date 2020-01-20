@@ -20,7 +20,7 @@ class PostsController extends AppController
 
     public function add(){
 
-        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
+        $post = array_map('trim', $_POST); //supprime tous les espace avant et après
         //encapsule superglobale et nettoie les données
         $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -44,7 +44,7 @@ class PostsController extends AppController
         $this->loadModel('Category');
         $categories = $this->Category->listToArray('id', 'title');
 
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($post);
         $this->render('admin.posts.edit', compact('categories', 'form'));
 
     }
