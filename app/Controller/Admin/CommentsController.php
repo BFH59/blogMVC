@@ -21,7 +21,7 @@ class CommentsController extends AppController
     public function delete(){
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
-            $result = $this->Comment->delete($id);
+            $this->Comment->delete($id);
             return $this->index();
         }
     }
@@ -30,7 +30,7 @@ class CommentsController extends AppController
     {
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
-            $result = $this->Comment->update($id, [
+            $this->Comment->update($id, [
                 'validated' => 1
             ]);
             return $this->index();
