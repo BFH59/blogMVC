@@ -35,23 +35,26 @@ class CategoriesController extends AppController
     }
 
     public function edit(){
-        if(!empty($_POST)){
-            $result = $this->Category->update($_GET['id'], [
-                'title' => $_POST['title'],
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if(!empty($title)){
+            $result = $this->Category->update($id, [
+                'title' => $title,
             ]);
             if($result){
                return $this->index();
             }
         }
-        $category = $this->Category->find($_GET['id']);
+        $category = $this->Category->find($id);
         $form = new BootstrapForm($category);
         $this->render('admin.categories.edit', compact('form'));
 
     }
 
     public function delete(){
-        if (!empty($_POST)) {
-            $result = $this->Category->delete($_POST['id']);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($id)) {
+            $result = $this->Category->delete($id);
             return $this->index();
         }
     }

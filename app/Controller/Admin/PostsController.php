@@ -21,13 +21,21 @@ class PostsController extends AppController
     public function add(){
 
         $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
-        if (!empty($_POST['author'] && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content']))) {
+        //encapsule superglobale et nettoie les données
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
             $result = $this->Post->create([
-                'author' => $_POST['author'],
-                'title' => $_POST['title'],
-                'chapo' => $_POST['chapo'],
-                'content' => $_POST['content'],
-                'categoryid' => $_POST['categoryid']
+                'author' => $author,
+                'title' => $title,
+                'chapo' => $chapo,
+                'content' => $content,
+                'categoryid' => $categoryid
             ]);
             if ($result) {
                 return $this->index();
@@ -42,14 +50,22 @@ class PostsController extends AppController
     }
 
     public function edit(){
-        if(!empty($_POST)){
 
-            $result = $this->Post->update($_GET['id'], [
-                'author' => $_POST['author'],
-                'title' => $_POST['title'],
-                'chapo' => $_POST['chapo'],
-                'content' => $_POST['content'],
-                'categoryid' => $_POST['categoryid'],
+        //encapsule superglobale et nettoie les données
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)){
+
+            $result = $this->Post->update($id, [
+                'author' => $author,
+                'title' => $title,
+                'chapo' => $chapo,
+                'content' => $content,
+                'categoryid' => $categoryid,
                 'post_update_date' => date("Y-m-d H:i:s")
             ]);
             if($result){
@@ -57,7 +73,7 @@ class PostsController extends AppController
             }
         }
 
-        $post = $this->Post->find($_GET['id']);
+        $post = $this->Post->find($id);
         $this->loadModel('Category');
         $categories = $this->Category->listToArray('id', 'title');
 
@@ -67,8 +83,10 @@ class PostsController extends AppController
     }
 
     public function delete(){
-        if (!empty($_POST)) {
-            $result = $this->Post->delete($_POST['id']);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (!empty($id)) {
+            $result = $this->Post->delete($id);
             return $this->index();
         }
     }
