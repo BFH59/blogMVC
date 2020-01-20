@@ -5,9 +5,9 @@ define('ROOT', dirname(__DIR__));
 require ROOT . '/app/App.php';
 require ROOT . '/vendor/autoload.php';
 
-
-if(isset($_GET['p'])) {
-    $page = $_GET['p'];
+$parameterGet = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_SPECIAL_CHARS);
+if(isset($parameterGet)) {
+    $page = $parameterGet;
 }else{
     $page = 'posts.index';
 

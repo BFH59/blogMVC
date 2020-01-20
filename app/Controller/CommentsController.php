@@ -16,7 +16,6 @@ class CommentsController extends AppController
 
     public function add(){
 
-        $_POST = array_map('trim', $_POST); //supprime tous les espace avant et après
         $postId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
