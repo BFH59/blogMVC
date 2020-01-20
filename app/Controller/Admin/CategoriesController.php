@@ -20,15 +20,16 @@ class CategoriesController extends AppController
 
     public function add(){
 
-        if (!empty($_POST['title'])) {
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        if (!empty($title)) {
             $result = $this->Category->create([
-                'title' => $_POST['title'],
+                'title' => $title,
             ]);
             if ($result) {
                 return $this->index();
             }
         }
-        $form = new BootstrapForm($_POST);
+        $form = new BootstrapForm($title);
         $this->render('admin.categories.edit', compact('form'));
 
     }
