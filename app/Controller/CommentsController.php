@@ -10,8 +10,6 @@ class CommentsController extends AppController
         parent::__construct();
         $this->loadModel('Comment');
     }
-//voir comment recuperer + simplement ID du post
-//voir pour message confirmation
 
     public function add(){
 

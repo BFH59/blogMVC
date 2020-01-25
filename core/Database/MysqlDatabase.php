@@ -53,7 +53,6 @@ class MysqlDatabase extends Database
         }else {
             $data = $req->fetchAll();
         }
-        //var_dump($data);die();
         return $data;
     }
 
@@ -80,7 +79,6 @@ class MysqlDatabase extends Database
         }else {
             $data = $req->fetchAll();
         }
-        //var_dump($data);
         return $data;
     }
 

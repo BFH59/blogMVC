@@ -67,14 +67,12 @@ class Table
 
         //$key = id
         //$value = title
-
+        $key = 'get'.ucfirst($key);
+        $value = 'get'.ucfirst($value);
         $records = $this->all();
         $return = [];
-        //var_dump($records);
-
         foreach($records as $k => $v){
-
-            $return[$v->$key] = $v->$value;
+            $return[$v->$key()] = $v->$value();
         }
 
         return $return;
