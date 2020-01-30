@@ -29,13 +29,13 @@ class DBAuth {
     public function logged(){
         return isset($_SESSION['auth']);
     }
-// verifie si l'utilisateur est admin (usertype = 2) pour accès au dashboard
+// verifie si l'utilisateur est admin (usertype = admin) pour accès au dashboard
 
     /**
      * @return bool
      */
     public function isAdmin(){
-        if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === '2'){
+        if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === 'admin'){
             return true;
         }
         return false;

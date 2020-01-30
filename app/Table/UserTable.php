@@ -18,6 +18,7 @@ class UserTable extends Table
             if($user->getPassword() === sha1($password)){
                 $_SESSION['auth'] = $user->getId();
                 $_SESSION['usertype'] = $user->getUsertype();
+                $_SESSION['username'] = $user->getUsername();
                 return true;
             }
         }

@@ -78,4 +78,16 @@ class UsersController extends AppController
         $this->render('users.login', compact('form', 'errors'));
 
     }
+
+    public function logout(){
+
+        $deco = false;
+        if(isset($_SESSION)){
+            session_unset();
+            $deco = true;
+        }
+        $form = new BootstrapForm();
+        $this->render('users.login', compact('form', 'deco'));
+
+    }
 }
