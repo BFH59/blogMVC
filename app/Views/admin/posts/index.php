@@ -7,7 +7,6 @@
 <table class="table">
     <thead>
     <tr>
-        <td>ID</td>
         <td>Titre</td>
         <td>Auteur</td>
         <td>Actions</td>
@@ -16,7 +15,6 @@
     <tbody>
     <?php foreach($posts as $post): ?>
     <tr>
-        <td><?= htmlspecialchars($post->getId());?></td>
         <td><?= htmlspecialchars($post->getTitle());?></td>
         <td><?= htmlspecialchars($post->getAuthor());?></td>
         <td>

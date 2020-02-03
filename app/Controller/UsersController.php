@@ -68,7 +68,11 @@ class UsersController extends AppController
 
             //$auth = new DBAuth(App::getInstance()->getDb());
             if($this->User->login($username, $password)){
-                header('location: index.php');
+                if(isset($_SESSION) && $_SESSION['usertype'] === 'admin'){
+                    header('location: index.php?p=admin.posts.index');
+                }else {
+                    header('location: index.php');
+                }
             } else {
                 $errors = true;
             }
@@ -81,13 +85,12 @@ class UsersController extends AppController
 
     public function logout(){
 
-        $deco = false;
+        $_SESSION['logout'] = false;
         if(isset($_SESSION)){
             session_unset();
-            $deco = true;
+            $_SESSION['logout'] = true;
         }
-        $form = new BootstrapForm();
-        $this->render('users.login', compact('form', 'deco'));
+        header('location: index.php?p=posts.index');
 
     }
 }

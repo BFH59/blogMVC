@@ -55,7 +55,7 @@
                 {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?p=admin.posts.index" target="_blank">Administration</a>
+                        <a class="nav-link" href="index.php?p=admin.posts.index">Administration</a>
                     </li>
                     <?php
                 }
@@ -125,7 +125,7 @@
                 if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === 'admin')
                 {
                     ?>
-                    <p class="text-center"><a href="index.php?p=admin.posts.index" target="_blank">Administration</a></p>
+                    <p class="text-center"><a href="index.php?p=admin.posts.index">Administration</a></p>
                     <?php
                 }
                 ?>

@@ -21,11 +21,6 @@
                 </div>
             <?php endif;?>
 
-            <?php if($deco): ?>
-                <div class="alert alert-success">
-                    Vous vous êtes correctement deconnecté !
-                </div>
-            <?php endif;?>
 <form method="post">
     <?= $form->input('username', 'Pseudo'); ?>
     <?= $form->input('password', 'Mot de passe', ['type' => 'password']); ?>

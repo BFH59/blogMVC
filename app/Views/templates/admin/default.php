@@ -25,6 +25,11 @@
                 <a class="nav-link" href="index.php?p=admin.comments.index">Gérer les commentaires</a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.php?p=posts.index">Retourner au blog</a>
+            </li>
+        </ul>
     </div>
 
 </nav>
