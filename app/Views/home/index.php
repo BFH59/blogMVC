@@ -24,8 +24,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <p class="help-block text-danger"><?= $errorMessage ?></p>
-            <p class="help-block text-success"><?= $successMessage ?></p>
             <p>Une demande ? Remplissez le formulaire ci-dessous et je vous recontacterai dès que possible !</p>
 
             <form method="post" action="index.php?p=home.sendmail" name="sentMessage" id="contactForm" novalidate>
@@ -57,6 +55,29 @@
                 </div>
             </form>
 
+        </div>
+        <div class="col-lg-4 col-md-6 mx-auto">
+            <h4 align="right">télécharger mon CV</h4>
+            <a href="#" data-toggle="modal" data-target="#CV"><img align="right" src="content/assets/pdflogo.png" ></a>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CV" tabindex="-1" role="dialog" aria-labelledby="CV de Julien Plumecocq" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">CV de Julien Plumecocq</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <object type="application/pdf" data="content/assets/CV.pdf" width="100%" height="500" style="height: 85vh;"></object>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

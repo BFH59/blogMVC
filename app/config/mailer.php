@@ -3,8 +3,8 @@ return [
     'smpt'    => 'smtp.gmail.com',
     'port'  => '587',
     'mode'=> 'tls',
-    'username'=> 'admin',
-    'password'=> 'test',
+    'username'=> 'b4ckfr0mh3ll@gmail.com',
+    'password'=> '!b4ckfr0mh3ll!59230',
     'email'=> 'b4ckfr0mh3ll@gmail.com',
     'name'=> 'Julien',
     'address'=> 'http://localhost:8888/blogMVC/'

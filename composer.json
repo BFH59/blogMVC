@@ -12,5 +12,8 @@
       "App\\": "app",
       "Core\\": "core"
     }
+  },
+  "require": {
+    "swiftmailer/swiftmailer": "^6.2"
   }
 }
