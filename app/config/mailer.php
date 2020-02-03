@@ -4,7 +4,7 @@ return [
     'port'  => '587',
     'mode'=> 'tls',
     'username'=> 'b4ckfr0mh3ll@gmail.com',
-    'password'=> '!b4ckfr0mh3ll!59230',
+    'password'=> 'test',
     'email'=> 'b4ckfr0mh3ll@gmail.com',
     'name'=> 'Julien',
     'address'=> 'http://localhost:8888/blogMVC/'
