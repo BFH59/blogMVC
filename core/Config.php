@@ -21,9 +21,7 @@ class Config
     //le constructeur stock dans l array $settings le fichier config.php
     public function __construct($file)
     {
-
         $this->settings = require($file);
-
     }
 
     //verifie si la clé existe dans $setting ou renvoi null
