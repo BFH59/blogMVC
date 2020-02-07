@@ -3,30 +3,35 @@
 namespace Core\Controller;
 
 
-
 class Controller
 {
     protected $viewPath;
     protected $template;
 
 
-    protected function render($view, $variables = []){
+    protected function render($view, $variables = [])
+    {
         ob_start();
         extract($variables);
-        require($this->viewPath . str_replace('.','/', $view) . '.php');
+        require($this->viewPath . str_replace('.', '/', $view) . '.php');
         $content = ob_get_clean();
         require($this->viewPath . 'templates/' . $this->template . '.php');
     }
-    protected function forbidden(){
+
+    protected function forbidden()
+    {
         header('HTTP/1.0 403 Forbidden');
         die('Acces interdit');
     }
 
-    protected function notFound(){
+    protected function notFound()
+    {
         header('HTTP/1.0 404 Not Found');
         die('Page introuvable');
     }
-    protected function notAllowed(){
+
+    protected function notAllowed()
+    {
         header('HTTP/1.0 403 Forbidden');
         die('Vous êtes correctement connecté mais vous n\'avez pas les droits necessaires pour accéder à la page');
     }
