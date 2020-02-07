@@ -12,13 +12,15 @@ class CommentsController extends AppController
         $this->loadModel('Comment');
     }
 
-    public function index(){
+    public function index()
+    {
         $comments = $this->Comment->commentToValidate();
         $this->render('admin.comments.index', compact('comments'));
     }
 
 
-    public function delete(){
+    public function delete()
+    {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
             $this->Comment->delete($id);

@@ -12,18 +12,20 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach($items as $categorie): ?>
-    <tr>
-        <td><?= htmlspecialchars($categorie->getTitle());?></td>
-        <td>
-            <a class="btn btn-primary" href="?p=admin.categories.edit&id=<?= $categorie->getId(); ?>">Editer</a>
-        <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
-            <form action="?p=admin.categories.delete" method="post" style="display:inline;">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($categorie->getId()); ?>">
-                <button type="submit" class="btn btn-danger" href="?p=admin.categories.delete&id=<?= htmlspecialchars($categorie->getId()); ?>">Supprimer</button>
-            </form>
-        </td>
-    </tr>
-    <?php endforeach;?>
+    <?php foreach ($items as $categorie): ?>
+        <tr>
+            <td><?= htmlspecialchars($categorie->getTitle()); ?></td>
+            <td>
+                <a class="btn btn-primary" href="?p=admin.categories.edit&id=<?= $categorie->getId(); ?>">Editer</a>
+                <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
+                <form action="?p=admin.categories.delete" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($categorie->getId()); ?>">
+                    <button type="submit" class="btn btn-danger"
+                            href="?p=admin.categories.delete&id=<?= htmlspecialchars($categorie->getId()); ?>">Supprimer
+                    </button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>
