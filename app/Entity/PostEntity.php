@@ -20,10 +20,11 @@ class PostEntity extends Entity
         return 'index.php?p=posts.single&id=' . $this->getId();
     }
 
-    public function getExcerpt(){
+    public function getExcerpt()
+    {
 
         $html = '<p>' . htmlspecialchars($this->getChapo()) . '</p>';
-        $html .= '<p><a href="' . htmlspecialchars($this->getUrl()) .'">Lire la suite</a></p>';
+        $html .= '<p><a href="' . htmlspecialchars($this->getUrl()) . '">Lire la suite</a></p>';
 
         return $html;
     }

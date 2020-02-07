@@ -13,12 +13,14 @@ class CategoriesController extends AppController
         $this->loadModel('Category');
     }
 
-    public function index(){
+    public function index()
+    {
         $items = $this->Category->all();
         $this->render('admin.categories.index', compact('items'));
     }
 
-    public function add(){
+    public function add()
+    {
 
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
         $title = trim($title);
@@ -35,15 +37,16 @@ class CategoriesController extends AppController
 
     }
 
-    public function edit(){
+    public function edit()
+    {
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
-        if(!empty($title)){
+        if (!empty($title)) {
             $result = $this->Category->update($id, [
                 'title' => $title,
             ]);
-            if($result){
-               return $this->index();
+            if ($result) {
+                return $this->index();
             }
         }
         $category = $this->Category->find($id);
@@ -52,7 +55,8 @@ class CategoriesController extends AppController
 
     }
 
-    public function delete(){
+    public function delete()
+    {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         if (!empty($id)) {
             $this->Category->delete($id);

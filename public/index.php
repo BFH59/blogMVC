@@ -9,7 +9,7 @@ $parameterGet = filter_input(INPUT_GET, 'p', FILTER_SANITIZE_SPECIAL_CHARS);
 if(isset($parameterGet)) {
     $page = $parameterGet;
 }else{
-    $page = 'posts.index';
+    $page = 'home.index';
 
 }
 //Gestion dynamique des routes

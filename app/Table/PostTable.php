@@ -28,8 +28,9 @@ ORDER BY posts.post_date DESC");
      * @param $id
      * @return \App\Entity\PostEntity
      */
-    public function findWithCategory($id){
-            return $this->query("
+    public function findWithCategory($id)
+    {
+        return $this->query("
 SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 
 LEFT JOIN categories on categoryid = categories.id 
@@ -42,7 +43,8 @@ WHERE posts.id = ?", [$id], true);
      * @param $categoryid
      * @return array
      */
-    public function lastByCategory($categoryid){
+    public function lastByCategory($categoryid)
+    {
         return $this->query("
 SELECT posts.id, posts.author, posts.title, posts.chapo, posts.content, DATE_FORMAT(posts.post_update_date, '%d/%m/%Y à %H:%i:%s ') as post_update_date, categories.title as category 
 FROM posts 

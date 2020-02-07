@@ -12,12 +12,14 @@ class UserTable extends Table
      * @param $password
      * @return bool
      */
-    public function login($username, $password){
-        $user = $this->query('SELECT * FROM users WHERE username = ?',[$username],  true);
-        if($user){
-            if($user->getPassword() === sha1($password)){
+    public function login($username, $password)
+    {
+        $user = $this->query('SELECT * FROM users WHERE username = ?', [$username], true);
+        if ($user) {
+            if ($user->getPassword() === sha1($password)) {
                 $_SESSION['auth'] = $user->getId();
                 $_SESSION['usertype'] = $user->getUsertype();
+                $_SESSION['username'] = $user->getUsername();
                 return true;
             }
         }
@@ -30,11 +32,12 @@ class UserTable extends Table
      * @param $email
      * @return bool
      */
-    public function userExists($username, $email){
-        $userExists = $this->query('SELECT * FROM users WHERE username = ? OR email = ?',[$username, $email],  true);
-        if($userExists){
-                return true;
-            }
+    public function userExists($username, $email)
+    {
+        $userExists = $this->query('SELECT * FROM users WHERE username = ? OR email = ?', [$username, $email], true);
+        if ($userExists) {
+            return true;
+        }
         return false;
 
     }

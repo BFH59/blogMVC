@@ -11,7 +11,8 @@ class CommentsController extends AppController
         $this->loadModel('Comment');
     }
 
-    public function add(){
+    public function add()
+    {
 
         $postId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
         $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -20,7 +21,7 @@ class CommentsController extends AppController
         $content = trim($content);
 
 
-        if(!empty($author) && !empty($content)) {
+        if (!empty($author) && !empty($content)) {
 
             $result = $this->Comment->create([
                 'post_id' => $postId,
@@ -31,7 +32,7 @@ class CommentsController extends AppController
                 $_SESSION['commentSuccess'] = true;
                 header('location: index.php?p=posts.single&id=' . $postId . '');
             }
-        }else{
+        } else {
             $_SESSION['commentFail'] = true;
             header('location: index.php?p=posts.single&id=' . $postId . '');
         }

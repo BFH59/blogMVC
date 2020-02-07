@@ -23,6 +23,7 @@ class CommentEntity extends Entity
     {
         return $this->author;
     }
+
     public function getContent()
     {
         return $this->content;

@@ -3,7 +3,6 @@
 <table class="table">
     <thead>
     <tr>
-        <td>ID Commentaire</td>
         <td>ID Article</td>
         <td>Auteur</td>
         <td>Contenu</td>
@@ -12,32 +11,35 @@
     </thead>
     <tbody>
     <?php
-    if(!$comments){
+    if (!$comments) {
         ?>
-    <h4>Aucun commentaire en attente d'approbation</h4>
-    <?php
+        <h4>Aucun commentaire en attente d'approbation</h4>
+        <?php
     }
     ?>
-    <?php foreach($comments as $comment): ?>
+    <?php foreach ($comments as $comment): ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getId());?></td>
-            <td><?= htmlspecialchars($comment->getPostId());?></td>
-            <td><?= htmlspecialchars($comment->getAuthor());?></td>
-            <td><?= htmlspecialchars($comment->getContent());?></td>
+            <td><?= htmlspecialchars($comment->getPostId()); ?></td>
+            <td><?= htmlspecialchars($comment->getAuthor()); ?></td>
+            <td><?= htmlspecialchars($comment->getContent()); ?></td>
             <td>
                 <!-- >creation du bouton validation. Pas de token CSRF utilisé donc création d'un formulaire specifique pour valider le commentaire -->
 
                 <form action="?p=admin.comments.validate" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($comment->getId()) ?>">
-                    <button type="submit" class="btn btn-success" href="?p=admin.comments.validate&id=<?= htmlspecialchars($comment->getId()); ?>">Valider</button>
+                    <button type="submit" class="btn btn-success"
+                            href="?p=admin.comments.validate&id=<?= htmlspecialchars($comment->getId()); ?>">Valider
+                    </button>
                 </form>
                 <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
                 <form action="?p=admin.comments.delete" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($comment->getId()) ?>">
-                    <button type="submit" class="btn btn-danger" href="?p=admin.comments.delete&id=<?= htmlspecialchars($comment->getId()); ?>">Supprimer</button>
+                    <button type="submit" class="btn btn-danger"
+                            href="?p=admin.comments.delete&id=<?= htmlspecialchars($comment->getId()); ?>">Supprimer
+                    </button>
                 </form>
             </td>
         </tr>
-    <?php endforeach;?>
+    <?php endforeach; ?>
     </tbody>
 </table>

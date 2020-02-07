@@ -13,12 +13,14 @@ class PostsController extends AppController
         $this->loadModel('Post');
     }
 
-    public function index(){
+    public function index()
+    {
         $posts = $this->Post->last();
         $this->render('admin.posts.index', compact('posts', 'categories'));
     }
 
-    public function add(){
+    public function add()
+    {
 
         $post = filter_input_array(INPUT_POST, $_POST);
 
@@ -55,7 +57,8 @@ class PostsController extends AppController
 
     }
 
-    public function edit(){
+    public function edit()
+    {
 
         //encapsule superglobale et nettoie les données
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -64,7 +67,7 @@ class PostsController extends AppController
         $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)){
+        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
 
             $result = $this->Post->update($id, [
                 'author' => $author,
@@ -74,8 +77,8 @@ class PostsController extends AppController
                 'categoryid' => $categoryid,
                 'post_update_date' => date("Y-m-d H:i:s")
             ]);
-            if($result){
-               return $this->index();
+            if ($result) {
+                return $this->index();
             }
         }
 
@@ -87,7 +90,8 @@ class PostsController extends AppController
 
     }
 
-    public function delete(){
+    public function delete()
+    {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (!empty($id)) {
