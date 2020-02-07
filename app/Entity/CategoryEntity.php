@@ -11,7 +11,8 @@ class CategoryEntity extends Entity
     private $id;
     private $title;
 
-    public function getUrl(){
+    public function getUrl()
+    {
         return 'index.php?p=posts.category&id=' . $this->getId();
     }
 

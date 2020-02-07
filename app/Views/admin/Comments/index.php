@@ -3,7 +3,6 @@
 <table class="table">
     <thead>
     <tr>
-        <td>ID Commentaire</td>
         <td>ID Article</td>
         <td>Auteur</td>
         <td>Contenu</td>
@@ -20,7 +19,6 @@
     ?>
     <?php foreach($comments as $comment): ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getId());?></td>
             <td><?= htmlspecialchars($comment->getPostId());?></td>
             <td><?= htmlspecialchars($comment->getAuthor());?></td>
             <td><?= htmlspecialchars($comment->getContent());?></td>

@@ -91,6 +91,7 @@ class PostsController extends AppController
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (!empty($id)) {
+
             $this->Post->delete($id);
             return $this->index();
         }

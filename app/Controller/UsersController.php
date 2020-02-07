@@ -2,6 +2,7 @@
 
 
 namespace App\Controller;
+
 use \App;
 use Core\HTML\BootstrapForm;
 
@@ -14,7 +15,8 @@ class UsersController extends AppController
         $this->loadModel('User');
     }
 
-    public function register(){
+    public function register()
+    {
         $errors = [];
         $success = [];
         $post = filter_input_array(INPUT_POST, $_POST);
@@ -57,21 +59,22 @@ class UsersController extends AppController
 
     }
 
-    public function login(){
+    public function login()
+    {
         $errors = false;
         $post = filter_input_array(INPUT_POST, $_POST);
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
         $username = trim($username);
         $password = trim($password);
-        if(!empty($username) && !empty($password)){
+        if (!empty($username) && !empty($password)) {
 
             //$auth = new DBAuth(App::getInstance()->getDb());
-            if($this->User->login($username, $password)){
-                if(isset($_SESSION) && $_SESSION['usertype'] === 'admin'){
+            if ($this->User->login($username, $password)) {
+                if (isset($_SESSION) && $_SESSION['usertype'] === 'admin') {
                     header('location: index.php?p=admin.posts.index');
-                }else {
-                    header('location: index.php');
+                } else {
+                    header('location: index.php?p=posts.index');
                 }
             } else {
                 $errors = true;
@@ -83,10 +86,11 @@ class UsersController extends AppController
 
     }
 
-    public function logout(){
+    public function logout()
+    {
 
         $_SESSION['logout'] = false;
-        if(isset($_SESSION)){
+        if (isset($_SESSION)) {
             session_unset();
             $_SESSION['logout'] = true;
         }
