@@ -4,7 +4,8 @@ namespace Core\Auth;
 
 use Core\Database\Database;
 
-class DBAuth {
+class DBAuth
+{
 
     private $db;
 
@@ -16,8 +17,9 @@ class DBAuth {
     /**
      * @return bool|mixed
      */
-    public function getUserId(){
-        if($this->logged()){
+    public function getUserId()
+    {
+        if ($this->logged()) {
             return $_SESSION['auth'];
         }
         return false;
@@ -26,7 +28,8 @@ class DBAuth {
     /**
      * @return bool
      */
-    public function logged(){
+    public function logged()
+    {
         return isset($_SESSION['auth']);
     }
 // verifie si l'utilisateur est admin (usertype = admin) pour accès au dashboard
@@ -34,8 +37,9 @@ class DBAuth {
     /**
      * @return bool
      */
-    public function isAdmin(){
-        if(isset($_SESSION['usertype']) && $_SESSION['usertype'] === 'admin'){
+    public function isAdmin()
+    {
+        if (isset($_SESSION['usertype']) && $_SESSION['usertype'] === 'admin') {
             return true;
         }
         return false;
