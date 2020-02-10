@@ -1,11 +1,11 @@
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('content/startbootstrap-clean-blog-gh-pages/img/home-bg.jpg')">
+<header class="masthead">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3>Article : <?= htmlspecialchars($post->getTitle()) ?></h3>
+                    <h1 class="subheading">Article : <?= htmlspecialchars($post->getTitle()) ?></h1>
                     <span class="subheading">Voici le contenu de l'article n° <?= htmlspecialchars($post->getId()) ?> posté par <em><?= htmlspecialchars($post->getAuthor()) ?></em> avec ses commentaires associés</span>
                 </div>
             </div>

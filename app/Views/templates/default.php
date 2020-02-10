@@ -22,19 +22,19 @@
           rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="content/startbootstrap-clean-blog-gh-pages/css/clean-blog.min.css" rel="stylesheet">
+    <link href="content/startbootstrap-clean-blog-gh-pages/css/clean-blog.css" rel="stylesheet">
 
 </head>
 
 <body>
 
 <?php if (!empty($_SESSION['username'])) { ?>
-    <div class="alert alert-success" style="position:fixed; left:0; bottom:0; z-index:100;">
+    <div class="alert alert-success loginOk">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Connecté en tant que
         <strong><?= $_SESSION['username'] . ' </strong><br />Vous êtes <strong>' . ucfirst($_SESSION['usertype']) ?></strong>
     </div>
-<?php } ?>
+<?php } unset($_SESSION['username']) ?>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">

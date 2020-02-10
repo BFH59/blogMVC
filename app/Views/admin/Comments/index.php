@@ -23,7 +23,7 @@
     <?php
     if (!$comments) {
         ?>
-        <h4>Aucun commentaire en attente d'approbation</h4>
+        <h2>Aucun commentaire en attente d'approbation</h2>
         <?php
     }
     ?>
