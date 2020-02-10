@@ -25,11 +25,11 @@ class PostsController extends AppController
         $post = filter_input_array(INPUT_POST, $_POST);
 
         //encapsule superglobale et nettoie les données
-        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
-        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
-        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_VALIDATE_INT);
         //supprime espaces avant et apres la chaine
         $author = trim($author);
         $title = trim($title);
@@ -61,14 +61,22 @@ class PostsController extends AppController
     {
 
         //encapsule superglobale et nettoie les données
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
-        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
-        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
-        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
-        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_VALIDATE_INT);
 
+        //check si le post n'a pas deja été supprimé de la bdd
+
+        $records = $this->Post->Count($id);
+        if ($records->total == 0) {
+            $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / Article déjà supprimé";
+            return $this->index();
+        }
+
+        if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
             $result = $this->Post->update($id, [
                 'author' => $author,
                 'title' => $title,
@@ -92,11 +100,15 @@ class PostsController extends AppController
 
     public function delete()
     {
-        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $records = $this->Post->count($id);
 
-        if (!empty($id)) {
-            $this->Post->delete($id);
+        if ($records->total == 0) {
+            $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / Article déjà supprimé";
             return $this->index();
         }
+        $this->Post->delete($id);
+        return $this->index();
     }
+
 }

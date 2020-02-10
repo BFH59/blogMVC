@@ -14,9 +14,9 @@ class CommentsController extends AppController
     public function add()
     {
 
-        $postId = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
-        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS);
-        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
+        $postId = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        $author = filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING, ENT_QUOTES);
         $author = trim($author);
         $content = trim($content);
 

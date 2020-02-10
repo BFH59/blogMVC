@@ -43,6 +43,11 @@ class Table
         return $this->query("UPDATE {$this->table} SET $sql_part WHERE id = ?", $attributes, true);
     }
 
+    public function count($id)
+    {
+        return $this->query("SELECT COUNT(*) as total FROM {$this->table} WHERE id = ?", [$id], true);
+    }
+
     public function delete($id)
     {
         return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id], true);

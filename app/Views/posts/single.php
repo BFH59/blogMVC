@@ -1,11 +1,11 @@
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('content/startbootstrap-clean-blog-gh-pages/img/home-bg.jpg')">
+<header class="masthead">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3>Article : <?= htmlspecialchars($post->getTitle()) ?></h3>
+                    <h1 class="subheading">Article : <?= htmlspecialchars_decode($post->getTitle(),ENT_QUOTES) ?></h1>
                     <span class="subheading">Voici le contenu de l'article n° <?= htmlspecialchars($post->getId()) ?> posté par <em><?= htmlspecialchars($post->getAuthor()) ?></em> avec ses commentaires associés</span>
                 </div>
             </div>
@@ -23,10 +23,10 @@ App::getInstance()->title = $post->getTitle();
 <div class="container">
     <div class="col-lg-12 col-md-10 mx-auto">
 
-        <h2><?= htmlspecialchars($post->getTitle()); ?></h2>
-        <span>Auteur : <em><?= htmlspecialchars($post->getAuthor()); ?></em></span><span> | Dernière modification le : <em><?= htmlspecialchars($post->getPostUpdateDate()); ?></em></span>
-        <h4><?= htmlspecialchars($post->getChapo()); ?></h4>
-        <p><?= htmlspecialchars($post->getContent()); ?></p>
+        <h2><?= htmlspecialchars_decode($post->getTitle(),ENT_QUOTES); ?></h2>
+        <span>Auteur : <em><?= htmlspecialchars_decode($post->getAuthor(),ENT_QUOTES); ?></em></span><span> | Dernière modification le : <em><?= htmlspecialchars($post->getPostUpdateDate()); ?></em></span>
+        <h4><?= htmlspecialchars_decode($post->getChapo(),ENT_QUOTES); ?></h4>
+        <p><?= htmlspecialchars_decode($post->getContent(),ENT_QUOTES); ?></p>
     </div>
     <hr>
     <?php
@@ -43,9 +43,9 @@ App::getInstance()->title = $post->getTitle();
         foreach ($comments as $comment) {
             ?>
             <div>
-                <p>Auteur: <?= htmlspecialchars($comment->getAuthor()); ?> ||
+                <p>Auteur: <?= htmlspecialchars_decode($comment->getAuthor(),ENT_QUOTES); ?> ||
                     <span>Posté le: <?= htmlspecialchars($comment->getCommentDate()); ?></span></p>
-                <p>Commentaire: <?= htmlspecialchars($comment->getContent()); ?></p>
+                <p>Commentaire: <?= htmlspecialchars_decode($comment->getContent(),ENT_QUOTES); ?></p>
                 <hr>
             </div>
             <?php
