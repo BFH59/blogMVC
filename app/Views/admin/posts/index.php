@@ -3,7 +3,16 @@
 <p>
     <a href="?p=admin.posts.add" class="btn btn-success">Ajouter un article</a>
 </p>
-
+<?php
+    if (isset($_SESSION['noRecords'])) {
+        ?>
+        <div class="alert-danger">
+            <?= $_SESSION['noRecords']; ?>
+        </div>
+        <?php
+        unset($_SESSION['noRecords']);
+    }
+    ?>
 <table class="table">
     <thead>
     <tr>

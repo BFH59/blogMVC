@@ -20,8 +20,9 @@ ORDER BY commentdate DESC ", [$id]);
     public function commentToValidate()
     {
         return $this->query("
-SELECT comments.id, comments.post_id, comments.author, comments.content, comments.validated, DATE_FORMAT(commentdate, '%d/%m/%Y à %H:%i:%s ') as commentdate  
+SELECT comments.id, comments.post_id, posts.title, comments.author, comments.content, comments.validated, DATE_FORMAT(commentdate, '%d/%m/%Y à %H:%i:%s ') as commentdate  
 FROM comments 
+INNER JOIN Posts ON comments.post_id = posts.id
 WHERE comments.validated = 0
 ORDER BY commentdate DESC");
     }

@@ -67,6 +67,15 @@ class PostsController extends AppController
         $chapo = filter_input(INPUT_POST, 'chapo', FILTER_SANITIZE_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_SPECIAL_CHARS);
         $categoryid = filter_input(INPUT_POST, 'categoryid', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        //check si le post n'a pas deja été supprimé de la bdd
+
+        $records = $this->Post->Count($id);
+        if ($records->total == 0) {
+            $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / Article déjà supprimé";
+            return $this->index();
+        }
+
         if (!empty($author) && !empty($title) && !empty($chapo) && !empty($content)) {
 
             $result = $this->Post->update($id, [
@@ -93,8 +102,12 @@ class PostsController extends AppController
     public function delete()
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
-
+        $records = $this->Post->count($id);
         if (!empty($id)) {
+            if ($records->total == 0) {
+                $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / Article déjà supprimé";
+                return $this->index();
+            }
             $this->Post->delete($id);
             return $this->index();
         }

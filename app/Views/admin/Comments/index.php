@@ -3,13 +3,23 @@
 <table class="table">
     <thead>
     <tr>
-        <td>ID Article</td>
-        <td>Auteur</td>
-        <td>Contenu</td>
+        <td>Titre de l'article</td>
+        <td>Auteur du commentaire</td>
+        <td>Contenu du commentaire</td>
         <td>Actions</td>
     </tr>
     </thead>
     <tbody>
+    <?php
+    if (isset($_SESSION['noRecords'])) {
+        ?>
+        <div class="alert-danger">
+            <?= $_SESSION['noRecords']; ?>
+        </div>
+        <?php
+        unset($_SESSION['noRecords']);
+    }
+    ?>
     <?php
     if (!$comments) {
         ?>
@@ -19,7 +29,7 @@
     ?>
     <?php foreach ($comments as $comment): ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getPostId()); ?></td>
+            <td><?= htmlspecialchars($comment->getTitle()); ?></td>
             <td><?= htmlspecialchars($comment->getAuthor()); ?></td>
             <td><?= htmlspecialchars($comment->getContent()); ?></td>
             <td>

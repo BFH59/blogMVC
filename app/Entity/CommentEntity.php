@@ -8,6 +8,7 @@ class CommentEntity extends Entity
 {
     private $id;
     private $post_id;
+    private $title;
     private $author;
     private $content;
     private $validated;
@@ -103,6 +104,22 @@ class CommentEntity extends Entity
     public function setPostId($post_id)
     {
         $this->post_id = $post_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
 

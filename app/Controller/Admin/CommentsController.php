@@ -22,16 +22,27 @@ class CommentsController extends AppController
     public function delete()
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $records = $this->Comment->count($id);
         if (!empty($id)) {
+            if ($records->total == 0) {
+                $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / commentaire déjà supprimé";
+                return $this->index();
+            }
             $this->Comment->delete($id);
             return $this->index();
+
         }
     }
 
     public function validate()
     {
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $records = $this->Comment->count($id);
         if (!empty($id)) {
+            if ($records->total == 0) {
+                $_SESSION['noRecords'] = "Aucun enregistrement correspondant trouvé / commentaire déjà supprimé";
+                return $this->index();
+            }
             $this->Comment->update($id, [
                 'validated' => 1
             ]);
