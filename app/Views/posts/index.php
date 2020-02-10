@@ -17,15 +17,16 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <?php if (isset($_SESSION['logout'])) { ?>
-                <div class="alert alert-danger">
+                <p class="alert alert-danger">
                     Vous vous êtes correctement deconnecté !
-                </div>
+                </p>
                 <?php
                 unset($_SESSION['logout']);
             } ?>
             <?php foreach ($posts as $post): ?>
-                <h2><a href="<?= $post->getUrl(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a></h2>
-                <p>Auteur : <em><?= htmlspecialchars($post->getAuthor()); ?></em>
+                <h2><a href="<?= $post->getUrl(); ?>"><?= htmlspecialchars_decode($post->getTitle(), ENT_QUOTES); ?></a>
+                </h2>
+                <p>Auteur : <em><?= htmlspecialchars_decode($post->getAuthor(), ENT_QUOTES); ?></em>
                     <span>| Dernière modification : <em><?= htmlspecialchars($post->getPostUpdateDate()); ?></em></span>
                 </p>
                 <p><?= $post->getExcerpt(); ?></p>
@@ -37,7 +38,9 @@
             <h2>Filtrer par catégories</h2>
             <ul>
                 <?php foreach ($categories as $category): ?>
-                    <li><a href="<?= $category->getUrl(); ?>"><?= htmlspecialchars($category->getTitle()); ?></a></li>
+                    <li>
+                        <a href="<?= $category->getUrl(); ?>"><?= htmlspecialchars_decode($category->getTitle(), ENT_QUOTES); ?></a>
+                    </li>
                     <hr>
                 <?php endforeach; ?>
             </ul>

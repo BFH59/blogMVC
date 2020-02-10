@@ -24,8 +24,8 @@
     <tbody>
     <?php foreach ($posts as $post): ?>
         <tr>
-            <td><?= htmlspecialchars($post->getTitle()); ?></td>
-            <td><?= htmlspecialchars($post->getAuthor()); ?></td>
+            <td><?= htmlspecialchars_decode($post->getTitle(), ENT_QUOTES); ?></td>
+            <td><?= htmlspecialchars_decode($post->getAuthor(),ENT_QUOTES); ?></td>
             <td>
                 <a class="btn btn-primary"
                    href="?p=admin.posts.edit&id=<?= htmlspecialchars($post->getId()); ?>">Editer</a>

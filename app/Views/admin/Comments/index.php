@@ -29,9 +29,9 @@
     ?>
     <?php foreach ($comments as $comment): ?>
         <tr>
-            <td><?= htmlspecialchars($comment->getTitle()); ?></td>
-            <td><?= htmlspecialchars($comment->getAuthor()); ?></td>
-            <td><?= htmlspecialchars($comment->getContent()); ?></td>
+            <td><?= htmlspecialchars_decode($comment->getTitle(),ENT_QUOTES); ?></td>
+            <td><?= htmlspecialchars_decode($comment->getAuthor(),ENT_QUOTES); ?></td>
+            <td><?= htmlspecialchars_decode($comment->getContent(),ENT_QUOTES); ?></td>
             <td>
                 <!-- >creation du bouton validation. Pas de token CSRF utilisé donc création d'un formulaire specifique pour valider le commentaire -->
 

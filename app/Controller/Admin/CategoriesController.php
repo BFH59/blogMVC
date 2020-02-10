@@ -22,7 +22,7 @@ class CategoriesController extends AppController
     public function add()
     {
 
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING, ENT_QUOTES);
         $title = trim($title);
         if (!empty($title)) {
             $result = $this->Category->create([
@@ -39,8 +39,8 @@ class CategoriesController extends AppController
 
     public function edit()
     {
-        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING, ENT_QUOTES);
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         $records = $this->Category->Count($id);
         if ($records->total == 0) {
@@ -63,7 +63,7 @@ class CategoriesController extends AppController
 
     public function delete()
     {
-        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $records = $this->Category->count($id);
         if (!empty($id)) {
             if ($records->total == 0) {

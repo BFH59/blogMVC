@@ -8,7 +8,7 @@
     <meta name="description" content="Blog MVC/OOP projet 5 OC">
     <meta name="author" content="Julien Plumecocq">
 
-    <title><?= htmlspecialchars(App::getInstance()->title); ?></title>
+    <title><?= htmlspecialchars_decode(App::getInstance()->title,ENT_QUOTES); ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="content/startbootstrap-clean-blog-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

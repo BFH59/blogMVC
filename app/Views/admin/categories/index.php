@@ -23,7 +23,7 @@ if (isset($_SESSION['noRecords'])) {
     <tbody>
     <?php foreach ($items as $categorie): ?>
         <tr>
-            <td><?= htmlspecialchars($categorie->getTitle()); ?></td>
+            <td><?= htmlspecialchars_decode($categorie->getTitle(),ENT_QUOTES); ?></td>
             <td>
                 <a class="btn btn-primary" href="?p=admin.categories.edit&id=<?= $categorie->getId(); ?>">Editer</a>
                 <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->

@@ -20,7 +20,7 @@ class HomeController extends AppController
 
     public function sendmail()
     {
-        $secure_mail = str_replace(array("\n", "\r", PHP_EOL), '', filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS));
+        $secure_mail = str_replace(array("\n", "\r", PHP_EOL), '', filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
         include_once ROOT . '/app/config/transport.php';
         // Create the Mailer using your created Transport
         $mailer = new \Swift_Mailer($transport);

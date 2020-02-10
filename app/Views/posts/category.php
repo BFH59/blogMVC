@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Catégorie : <?= htmlspecialchars($categorie->getTitle()) ?></h1>
-                    <span class="subheading">Liste de tous les articles de la catégorie <em><?= htmlspecialchars($categorie->getTitle()) ?></em></span>
+                    <h1>Catégorie : <?= htmlspecialchars_decode($categorie->getTitle(), ENT_QUOTES) ?></h1>
+                    <span class="subheading">Liste de tous les articles de la catégorie <em><?= htmlspecialchars_decode($categorie->getTitle(), ENT_QUOTES) ?></em></span>
                 </div>
             </div>
         </div>
@@ -20,9 +20,10 @@
 
             foreach ($posts as $post): ?>
 
-                <h2><a href="<?= $post->getUrl(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a></h2>
+                <h2><a href="<?= $post->getUrl(); ?>"><?= htmlspecialchars_decode($post->getTitle(), ENT_QUOTES); ?></a>
+                </h2>
                 <p>Auteur :
-                    <em><?= htmlspecialchars($post->getAuthor()); ?></em><span> | Dernière modification : <em><?= $post->getPostUpdateDate(); ?></em></span>
+                    <em><?= htmlspecialchars_decode($post->getAuthor(), ENT_QUOTES); ?></em><span> | Dernière modification : <em><?= $post->getPostUpdateDate(); ?></em></span>
                 </p>
 
                 <p><?= $post->getExcerpt(); ?></p>
@@ -35,7 +36,9 @@
             <h2>Filtrer par catégories</h2>
             <ul>
                 <?php foreach ($categories as $category): ?>
-                    <li><a href="<?= $category->getUrl(); ?>"><?= htmlspecialchars($category->getTitle()); ?></a></li>
+                    <li>
+                        <a href="<?= $category->getUrl(); ?>"><?= htmlspecialchars_decode($category->getTitle(), ENT_QUOTES); ?></a>
+                    </li>
                     <hr>
                 <?php endforeach; ?>
             </ul>

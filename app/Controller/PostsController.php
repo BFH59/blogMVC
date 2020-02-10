@@ -24,7 +24,7 @@ class PostsController extends AppController
 
     public function category()
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         $categorie = $this->Category->find($id);
 
@@ -40,7 +40,7 @@ class PostsController extends AppController
 
     public function single()
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         $post = $this->Post->findWithCategory($id);
         $comments = $this->Comment->showValidatedComment($id);
