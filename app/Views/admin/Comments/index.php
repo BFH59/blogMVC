@@ -35,14 +35,14 @@
             <td>
                 <!-- >creation du bouton validation. Pas de token CSRF utilisé donc création d'un formulaire specifique pour valider le commentaire -->
 
-                <form action="?p=admin.comments.validate" method="post" style="display:inline;">
+                <form action="?p=admin.comments.validate" method="post" class="adminForm">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($comment->getId()) ?>">
                     <button type="submit" class="btn btn-success"
                             href="?p=admin.comments.validate&id=<?= htmlspecialchars($comment->getId()); ?>">Valider
                     </button>
                 </form>
                 <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
-                <form action="?p=admin.comments.delete" method="post" style="display:inline;">
+                <form action="?p=admin.comments.delete" method="post" class="adminForm">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($comment->getId()) ?>">
                     <button type="submit" class="btn btn-danger"
                             href="?p=admin.comments.delete&id=<?= htmlspecialchars($comment->getId()); ?>">Supprimer
