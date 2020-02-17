@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,8 @@
     <!-- Custom styles for this template -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for admin template -->
+    <link href="content/startbootstrap-clean-blog-gh-pages/css/admin.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -37,7 +39,7 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template" style="padding-top: 100px;">
+    <div class="starter-template"">
         <?= $content; ?>
     </div>
 

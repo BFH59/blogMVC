@@ -30,7 +30,7 @@
                 <a class="btn btn-primary"
                    href="?p=admin.posts.edit&id=<?= htmlspecialchars($post->getId()); ?>">Editer</a>
                 <!-- >creation du bouton de suppression. Pas de token CSRF utilisé donc création d'un formulaire specifique à la suppression -->
-                <form action="?p=admin.posts.delete" method="post" style="display:inline;">
+                <form action="?p=admin.posts.delete" method="post" class="adminForm">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($post->getId()) ?>">
                     <button type="submit" class="btn btn-danger"
                             href="?p=admin.posts.delete&id=<?= htmlspecialchars($post->getId()); ?>">Supprimer
