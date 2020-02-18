@@ -13,16 +13,20 @@ Informations annexes :
 Installation du projet :
 
 Etape 1 : Transférer tous les fichiers dans le dossier de votre serveur web (www/).
+
 Etape 2 : Créer une base données sur votre SGDB (MySQL) et importer le fichier DB/db.sql
+
 Etape 3 : Saisissez les identifiants de connexion à la BDD dans le fichier blogMVC/App/Config/config.php
 
 --------------------------------------
 
 return array(
+
     "db_user" => "user",
     "db_pass" => "MDP",
     "db_host" => "127.0.0.1:8889",
     "db_name" => "blogP5"
+    
 );
 
 --------------------------------------
@@ -30,7 +34,9 @@ return array(
 Etape 4 : Paramétrez le fichier pour l'envoi des e-mails du formulaire de contact (blogMVC/App/Config/mailer.php
 
 --------------------------------------
+
 return [
+
     'smpt'    => 'smtp.gmail.com',
     'port'  => '587',
     'mode'=> 'tls',
@@ -39,6 +45,7 @@ return [
     'email'=> 'Username@username.com',
     'name'=> 'Julien',
     'address'=> 'http://votredomaine.com/blogMVC/'
+    
 ];
 
 --------------------------------------
