@@ -18,6 +18,15 @@ Etape 2 : Créer une base données sur votre SGDB (MySQL) et importer le fichier
 
 Etape 3 : Saisissez les identifiants de connexion à la BDD dans le fichier blogMVC/App/Config/config.php
 
+Etape 4 : Le projet utilise composer pour la gestion des dépendances ainsi que l'auto chargement de classes.
+-> une fois le projet installé/cloné, faire :
+
+---------------------------
+
+php composer.phar install
+
+---------------------------
+
 --------------------------------------
 
 return array(
