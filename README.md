@@ -15,6 +15,7 @@ Installation du projet :
 Etape 1 : Transférer tous les fichiers dans le dossier de votre serveur web (www/).
 Etape 2 : Créer une base données sur votre SGDB (MySQL) et importer le fichier DB/db.sql
 Etape 3 : Saisissez les identifiants de connexion à la BDD dans le fichier blogMVC/App/Config/config.php
+
 ====================================
 return array(
     "db_user" => "user",
